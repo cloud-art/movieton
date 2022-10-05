@@ -1,6 +1,6 @@
 import React from 'react';
 import Router from '../Router/Router';
-import s from './App.module.css';
+import '../../styles/main.scss';
 
 function App() {
     return (

@@ -1,0 +1,13 @@
+.Header {
+    width: 100vw;
+    min-height: 70px;
+    background-color: var(--color-blue-dark);
+    color: var(--color-white);
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}

@@ -1,12 +1,11 @@
-import '../../../styles/global.scss';
-
 import React from 'react';
+import s from './Homepage.module.scss';
 
 function Homepage() {
     return (
-        <div className="main">
+        <div className={s.Homepage}>
             <div className="container">
-                <h1>Homepage page</h1>
+                <span>Homepage</span>
             </div>
         </div>
     );
