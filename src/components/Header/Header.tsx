@@ -1,3 +1,4 @@
+import Burger from './components/Burger/Burger';
 import classNames from 'classnames';
 import s from './Header.module.scss';
 
@@ -7,9 +8,9 @@ const Header: React.FunctionComponent<HeaderProps> = () => {
     return (
         <header className={s.Header}>
             <div className={classNames('container', s.container)}>
-                <div>
+                <div className={s.left}>
                     <div>Logo</div>
-                    <div>Menu</div>
+                    <Burger />
                     <div>Dropdown</div>
                 </div>
                 <div>Search</div>

@@ -1,13 +1,21 @@
 .Header {
+    position: sticky;
     width: 100vw;
-    min-height: 70px;
     background-color: var(--color-blue-dark);
     color: var(--color-white);
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+}
+
+.left {
+    display: flex;
+    justify-content: start;
     align-items: center;
 }
