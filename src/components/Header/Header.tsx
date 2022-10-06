@@ -1,4 +1,5 @@
 import Burger from './components/Burger/Burger';
+import Button from '../Button/Button';
 import classNames from 'classnames';
 import s from './Header.module.scss';
 
