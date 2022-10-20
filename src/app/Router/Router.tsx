@@ -9,10 +9,10 @@ function Router() {
     return (
         <Routes>
             <Route path={'/'} element={<Layout />}>
-                {isAuth && authRoutes.map(({ path, Component }) => <Route path={path} element={<Component />} />)}
+                {isAuth && authRoutes.map(({ path, Component }) => <Route key={path} path={path} element={<Component />} />)}
 
                 {publicRoutes.map(({ path, Component }) => (
-                    <Route path={path} element={<Component />} />
+                    <Route key={path} path={path} element={<Component />} />
                 ))}
             </Route>
         </Routes>
