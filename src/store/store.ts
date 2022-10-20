@@ -1,4 +1,4 @@
-import { combineReducers, configureStore, PreloadedState } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { toggleReducer } from './reducers/toggleSlice';
 
 const rootReducer = combineReducers({

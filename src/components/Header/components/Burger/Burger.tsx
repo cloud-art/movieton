@@ -4,7 +4,6 @@ import { useActions } from '../../../../hooks/useActions';
 import { useTypedSelector } from '../../../../hooks/useTypedSelector';
 import { FiMenu, FiX } from 'react-icons/fi';
 import s from './Burger.module.scss';
-import { useState } from 'react';
 
 interface BurgerProps {}
 

@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, Children } from 'react';
+import { ButtonHTMLAttributes } from 'react';
 import classNames from 'classnames';
 import s from './Button.module.scss';
 
