@@ -1,0 +1,21 @@
+.dropdown {
+    position: absolute;
+    top: 0;
+    left: -25px;
+    opacity: 0;
+    visibility: hidden;
+    width: 150px;
+    padding: 85px 25px 25px 30px;
+    border-radius: 0 0 10px 10px;
+    background-color: var(--color-blue-darkest);
+    transition: opacity 0.3s, visibility 0.3s;
+
+    &Open {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    @media (max-width: 768px) {
+        display: none;
+    }
+}

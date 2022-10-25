@@ -1,10 +1,11 @@
 .Header {
     position: sticky;
-    width: 100vw;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 5;
     background-color: var(--color-blue-dark);
     color: var(--color-white);
-    padding-top: 20px;
-    padding-bottom: 20px;
 }
 
 .container {
@@ -12,10 +13,32 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    @media (max-width: 1280px) {
+        padding-left: 35px !important;
+        padding-right: 35px !important;
+    }
+
+    @media (max-width: 768px) {
+        display: flex;
+        justify-content: flex-start;
+        padding: 22px var(--container-offset) !important;
+    }
+
+    @media (max-width: 576px) {
+        padding: 17px var(--container-offset) !important;
+    }
 }
 
 .left {
+    position: relative;
     display: flex;
-    justify-content: start;
     align-items: center;
+    padding-top: 22px;
+    padding-bottom: 22px;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        padding: 0;
+    }
 }
