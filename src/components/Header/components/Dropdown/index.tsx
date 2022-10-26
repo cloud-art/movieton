@@ -1,28 +1,44 @@
 import classNames from 'classnames';
+import { HOMEPAGE_ROUTE, FILMS_ROUTE, SERIES_ROUTE, FAVOURITE_ROUTE } from '../../../../utils/consts';
+import { FiHome, FiHeart, FiFilm, FiPlayCircle } from 'react-icons/fi';
 import { useTypedSelector } from '../../../../hooks/useTypedSelector';
 import s from './index.module.scss';
+import { Link, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useActions } from '../../../../hooks/useActions';
 
 interface DropdownProps {}
 
 const Dropdown: React.FunctionComponent<DropdownProps> = () => {
     const items = [
         {
-            href: '',
+            icon: <FiHome />,
+            href: HOMEPAGE_ROUTE,
             text: 'Гавная'
         },
         {
-            href: '',
+            icon: <FiFilm />,
+            href: FILMS_ROUTE,
             text: 'Полнометражки'
         },
         {
-            href: '',
+            icon: <FiPlayCircle />,
+            href: SERIES_ROUTE,
             text: 'Сериалы'
         },
         {
-            href: '',
+            icon: <FiHeart />,
+            href: FAVOURITE_ROUTE,
             text: 'Избранное'
         }
     ];
+
+    let location = useLocation();
+    const { toggleMenu } = useActions();
+
+    useEffect(() => {
+        toggleMenu(false);
+    }, [location]);
 
     const { openedMenu } = useTypedSelector((state) => state.toggleReducer);
     return (
@@ -31,7 +47,10 @@ const Dropdown: React.FunctionComponent<DropdownProps> = () => {
                 {items.map((el) => {
                     return (
                         <li key={el.text} className={s.item}>
-                            {el.text}
+                            <Link to={el.href} className={s.link}>
+                                {el.icon}
+                                {el.text}
+                            </Link>
                         </li>
                     );
                 })}
