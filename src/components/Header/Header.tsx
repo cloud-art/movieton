@@ -2,7 +2,7 @@ import Burger from './components/Burger/Burger';
 import Logo from '../Logo/Logo';
 import classNames from 'classnames';
 import s from './Header.module.scss';
-import Dropdown from './components/Dropdown';
+import Dropdown from './components/Dropdown/Dropdown';
 import { useActions } from '../../hooks/useActions';
 import { useRef } from 'react';
 import useOnClickOutside from '../../hooks/useOnClickOutside';

@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { HOMEPAGE_ROUTE, FILMS_ROUTE, SERIES_ROUTE, FAVOURITE_ROUTE } from '../../../../utils/consts';
 import { FiHome, FiHeart, FiFilm, FiPlayCircle } from 'react-icons/fi';
 import { useTypedSelector } from '../../../../hooks/useTypedSelector';
-import s from './index.module.scss';
+import s from './Dropdown.module.scss';
 import { Link, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useActions } from '../../../../hooks/useActions';
@@ -14,7 +14,7 @@ const Dropdown: React.FunctionComponent<DropdownProps> = () => {
         {
             icon: <FiHome />,
             href: HOMEPAGE_ROUTE,
-            text: 'Гавная'
+            text: 'Главная'
         },
         {
             icon: <FiFilm />,
