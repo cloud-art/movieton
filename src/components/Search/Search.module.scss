@@ -1,0 +1,41 @@
+.form {
+    display: flex;
+    align-items: center;
+}
+
+.searchButton {
+    width: 34px;
+    height: 34px;
+    color: var(--color-white);
+
+    @media (max-width: 768px) {
+        display: none;
+    }
+
+    svg {
+        width: 17px;
+        height: 17px;
+        stroke: currentColor;
+    }
+}
+
+.showSearch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    margin-right: -8px;
+    flex-shrink: 0;
+    order: 1;
+
+    @media (min-width: 769px) {
+        display: none;
+    }
+
+    svg {
+        width: 16px;
+        height: 16px;
+        stroke: var(--color-white);
+    }
+}
