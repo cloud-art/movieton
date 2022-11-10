@@ -1,11 +1,44 @@
 .form {
+    position: relative;
+}
+
+.closeButton {
+    position: absolute;
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+
+    &.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    svg {
+        width: 17px;
+        height: 17px;
+        stroke: currentColor;
+    }
 }
 
 .searchButton {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 34px;
     height: 34px;
+    top: 50%;
+    right: -40px;
+    transform: translateY(-50%);
+
     color: var(--color-white);
 
     @media (max-width: 768px) {
