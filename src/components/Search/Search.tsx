@@ -2,7 +2,7 @@ import s from './Search.module.scss';
 import { FiX, FiSearch, FiChevronLeft } from 'react-icons/fi';
 import Button from '../Button/Button';
 import InputText from '../InputText/InputText';
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useActions } from '../../hooks/useActions';
 import classNames from 'classnames';
@@ -23,6 +23,12 @@ const Search: React.FunctionComponent<SearchProps> = () => {
         setValue(e.target.value);
     };
 
+    const submitForm = (e: FormEvent<HTMLFormElement | HTMLButtonElement>) => {
+        e.preventDefault();
+        setSearch(value);
+        //Router redirect on search page
+    };
+
     const handleClearInput = () => {
         setValue('');
         setVisible(false);
@@ -41,7 +47,7 @@ const Search: React.FunctionComponent<SearchProps> = () => {
 
     return (
         <>
-            <form ref={formRef} className={classNames(s.form, visible && s.visible)}>
+            <form onSubmit={submitForm} ref={formRef} className={classNames(s.form, visible && s.visible)}>
                 <InputText ref={inputRef} className={s.search} variant={visible ? 'dark' : 'light'} value={value} onChange={onChangeHandle} placeholder="Поиск..." type="search" />
                 <Button type="button" className={s.hideSearch} onClick={() => setVisible(false)}>
                     <FiChevronLeft />
