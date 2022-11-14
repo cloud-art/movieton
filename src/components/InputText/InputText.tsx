@@ -3,7 +3,7 @@ import { ChangeEvent, InputHTMLAttributes, forwardRef } from 'react';
 import s from './InputText.module.scss';
 interface InputTextProps extends InputHTMLAttributes<HTMLInputElement> {
     error?: boolean;
-    variant?: 'light' | 'small';
+    variant?: 'dark' | 'light' | 'small';
     value?: string | number;
     onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
@@ -14,7 +14,7 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(({ classNa
             <input
                 type="text"
                 ref={ref}
-                className={classNames(s.inputText, variant === 'light' && s.light, variant === 'small' && s.small, error === true && s.error)}
+                className={classNames(s.inputText, variant === 'dark' && s.dark, variant === 'light' && s.light, variant === 'small' && s.small, error === true && s.error)}
                 value={value}
                 onChange={onChange}
                 {...props}

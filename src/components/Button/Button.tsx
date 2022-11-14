@@ -4,6 +4,7 @@ import s from './Button.module.scss';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     className: string;
+    variant?: 'dark' | 'light';
 }
 
 const Button: React.FunctionComponent<ButtonProps> = ({ className, children, ...props }) => {

@@ -49,6 +49,23 @@
     }
 }
 
+.dark {
+    padding: 0 15px;
+    background-color: var(--color-blue-darkest);
+    font-weight: 300;
+    color: var(--color-white);
+    border-color: transparent;
+
+    &::placeholder {
+        color: var(--color-white);
+        opacity: 0.5;
+    }
+
+    &.error {
+        background-color: rgba(#f000, 0.1);
+    }
+}
+
 .small {
     background-color: var(--color-blue-light);
     color: var(--color-dark);
