@@ -2,15 +2,18 @@ import classNames from 'classnames';
 import { ChangeEvent, InputHTMLAttributes, forwardRef } from 'react';
 import s from './InputText.module.scss';
 interface InputTextProps extends InputHTMLAttributes<HTMLInputElement> {
+    label?: string;
     error?: boolean;
     variant?: 'dark' | 'light' | 'small';
+    errorMessage?: string;
     value?: string | number;
     onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const InputText = forwardRef<HTMLInputElement, InputTextProps>(({ className, error = false, value, variant, onChange, ...props }, ref) => {
+export const InputText = forwardRef<HTMLInputElement, InputTextProps>(({ className, error = false, errorMessage, value, label, variant, onChange, ...props }, ref) => {
     return (
         <label className={classNames(s.label, className)}>
+            {label && <span className={s.caption}>{label}</span>}
             <input
                 type="text"
                 ref={ref}
