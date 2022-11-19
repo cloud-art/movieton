@@ -3,7 +3,7 @@ import AuthForm from '../../AuthForm/AuthForm';
 import InputText from '../../InputText/InputText';
 import { Controller, useForm } from 'react-hook-form';
 import s from './Login.module.scss';
-import Button from '../../Button/Button';
+import ButtonDefault from '../../ButtonDefault/ButtonDefault';
 
 function Login() {
     const {
@@ -27,20 +27,28 @@ function Login() {
     return (
         <div className={s.Login}>
             <div className="container">
-                <AuthForm>
+                <AuthForm className={s.authForm}>
                     <h1>Вход</h1>
                     <Controller
                         name="email"
                         control={control}
+                        rules={{
+                            required: { value: true, message: 'Поле обязательное' },
+                            pattern: {
+                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                message: 'Неверный email'
+                            }
+                        }}
                         render={({ field: { value, onChange } }) => {
                             return (
                                 <InputText
+                                    className={s.inputForm}
                                     type="email"
                                     label="E-mail"
                                     placeholder="Введите почтовый адрес"
                                     value={value}
                                     onChange={onChange}
-                                    errorMessage={errors.password?.message}
+                                    errorMessage={errors.email?.message}
                                     error={errors.hasOwnProperty('email')}
                                 />
                             );
@@ -49,9 +57,21 @@ function Login() {
                     <Controller
                         name="password"
                         control={control}
+                        rules={{
+                            required: { value: true, message: 'Поле обязательное' },
+                            minLength: {
+                                value: 8,
+                                message: 'Пароль должен быть не менее 8 символов и содержать хотя бы 1 символ верхнего регистра'
+                            },
+                            pattern: {
+                                value: /^(?=.*\d)(?=.*[A-Z])/,
+                                message: 'Пароль должен быть не менее 8 символов и содержать хотя бы 1 символ верхнего регистра'
+                            }
+                        }}
                         render={({ field: { value, onChange } }) => {
                             return (
                                 <InputText
+                                    className={s.inputForm}
                                     type="password"
                                     label="Пароль"
                                     placeholder="Введите пароль"
@@ -63,9 +83,9 @@ function Login() {
                             );
                         }}
                     />
-                    <Button className="" onClick={handleLogin}>
+                    <ButtonDefault className={s.buttonForm} onClick={handleLogin}>
                         Войти
-                    </Button>
+                    </ButtonDefault>
                 </AuthForm>
             </div>
         </div>

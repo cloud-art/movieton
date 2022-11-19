@@ -4,7 +4,7 @@ import '../../styles/main.scss';
 
 function App() {
     return (
-        <div>
+        <div className="appContainer">
             <Router />
         </div>
     );

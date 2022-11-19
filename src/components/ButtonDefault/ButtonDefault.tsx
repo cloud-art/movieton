@@ -1,7 +1,18 @@
-interface ButtonDefaultProps {}
+import classNames from 'classnames';
+import { ButtonHTMLAttributes, Children, PropsWithChildren } from 'react';
+import Button from '../Button/Button';
+import s from './ButtonDefault.module.scss';
 
-const ButtonDefault: React.FunctionComponent<ButtonDefaultProps> = () => {
-    return <button></button>;
+interface ButtonDefaultProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    variant?: 'regular';
+}
+
+const ButtonDefault: React.FunctionComponent<PropsWithChildren<ButtonDefaultProps>> = ({ children, variant, className, ...props }) => {
+    return (
+        <Button className={classNames(s.button, variant === 'regular' && s.regular, className)} {...props}>
+            {children}
+        </Button>
+    );
 };
 
 export default ButtonDefault;
