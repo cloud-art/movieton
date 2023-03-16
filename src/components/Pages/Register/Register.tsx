@@ -2,12 +2,10 @@ import React from 'react';
 import AuthForm from '../../AuthForm/AuthForm';
 import InputText from '../../InputText/InputText';
 import { Controller, useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
-import s from './Login.module.scss';
+import s from './Register.module.scss';
 import ButtonDefault from '../../ButtonDefault/ButtonDefault';
-import { REGISTER_ROUTE } from '../../../utils/consts';
 
-function Login() {
+function Register() {
     const {
         handleSubmit,
         control,
@@ -15,13 +13,15 @@ function Login() {
         reset
     } = useForm({
         defaultValues: {
+            name: '',
+            surname: '',
             email: '',
             password: ''
         }
     });
 
-    const handleLogin = handleSubmit((data) => {
-        console.log('Успешная авторизация', data);
+    const handleRegister = handleSubmit((data) => {
+        console.log('Успешная регистрация', data);
         // переадрессация
         reset();
     });
@@ -30,7 +30,57 @@ function Login() {
         <div className={s.Login}>
             <div className="container">
                 <AuthForm className={s.authForm}>
-                    <h1>Вход</h1>
+                    <h1>Регистрация</h1>
+                    <Controller
+                        name="name"
+                        control={control}
+                        rules={{
+                            required: { value: true, message: 'Поле обязательное' },
+                            minLength: { value: 2, message: "Слишком коротко"},
+                            pattern: {
+                                value: /^([a-zA-Zа-яА-Я])+$/i,
+                                message: 'Неверный формат'
+                            }
+                        }}
+                        render={({ field: { value, onChange } }) => {
+                            return (
+                                <InputText
+                                    className={s.inputForm}
+                                    label="Имя"
+                                    placeholder="Введите имя"
+                                    value={value}
+                                    onChange={onChange}
+                                    errorMessage={errors.name?.message}
+                                    error={errors.hasOwnProperty('name')}
+                                />
+                            );
+                        }}
+                    />
+                    <Controller
+                        name="surname"
+                        control={control}
+                        rules={{
+                            required: { value: true, message: 'Поле обязательное' },
+                            minLength: { value: 2, message: "Слишком коротко"},
+                            pattern: {
+                                value: /^([a-zA-Zа-яА-Я])+$/i,
+                                message: 'Неверный формат'
+                            }
+                        }}
+                        render={({ field: { value, onChange } }) => {
+                            return (
+                                <InputText
+                                    className={s.inputForm}
+                                    label="Фамилия"
+                                    placeholder="Введите фамилию"
+                                    value={value}
+                                    onChange={onChange}
+                                    errorMessage={errors.surname?.message}
+                                    error={errors.hasOwnProperty('surname')}
+                                />
+                            );
+                        }}
+                    />
                     <Controller
                         name="email"
                         control={control}
@@ -63,11 +113,11 @@ function Login() {
                             required: { value: true, message: 'Поле обязательное' },
                             minLength: {
                                 value: 8,
-                                message: 'Пароль должен быть не менее 8 символов и содержать хотя бы 1 символ верхнего регистра'
+                                message: 'Пароль должен быть не менее 8 символов'
                             },
                             pattern: {
                                 value: /^(?=.*\d)(?=.*[A-Z])/,
-                                message: 'Пароль должен быть не менее 8 символов и содержать хотя бы 1 символ верхнего регистра'
+                                message: 'Пароль должен содержать хотя бы 1 символ верхнего регистра'
                             }
                         }}
                         render={({ field: { value, onChange } }) => {
@@ -85,20 +135,13 @@ function Login() {
                             );
                         }}
                     />
-                    <ButtonDefault className={s.buttonForm} onClick={handleLogin}>
-                        Войти
+                    <ButtonDefault className={s.buttonForm} onClick={handleRegister}>
+                        Регистрация
                     </ButtonDefault>
-                    <div>
-                        Нет аккаунта?&nbsp;
-                        <Link to={REGISTER_ROUTE} className={s.link}>
-                            <span>Зарегистрироваться</span>
-                        </Link>
-                    </div>
-                    
                 </AuthForm>
             </div>
         </div>
     );
 }
 
-export default Login;
+export default Register;
