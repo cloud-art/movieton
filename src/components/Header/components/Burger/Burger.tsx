@@ -1,4 +1,4 @@
-import Button from '../../../Button/Button';
+import Button from '../../../UI/Button/Button';
 
 import { useActions } from '../../../../hooks/useActions';
 import { useTypedSelector } from '../../../../hooks/useTypedSelector';

@@ -1,7 +1,7 @@
 import s from './Search.module.scss';
 import { FiX, FiSearch, FiChevronLeft } from 'react-icons/fi';
-import Button from '../Button/Button';
-import InputText from '../InputText/InputText';
+import Button from '../UI/Button/Button';
+import InputText from '../UI/InputText/InputText';
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useActions } from '../../hooks/useActions';

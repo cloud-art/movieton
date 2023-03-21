@@ -1,6 +1,6 @@
 import { FILMS_ROUTE, SERIES_ROUTE } from '../../utils/consts';
 import { Link } from 'react-router-dom';
-import Logo from '../Logo/Logo';
+import Logo from '../UI/Logo/Logo';
 import s from './Footer.module.scss';
 import classNames from 'classnames';
 

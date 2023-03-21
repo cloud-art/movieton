@@ -1,7 +1,7 @@
 import s from './Logo.module.scss';
-import logoImage from '../../assets/images/logo.svg';
+import logoImage from '../../../assets/images/logo.svg'
 import { Link } from 'react-router-dom';
-import { HOMEPAGE_ROUTE } from '../../utils/consts';
+import { HOMEPAGE_ROUTE } from '../../../utils/consts';
 
 interface LogoProps {}
 

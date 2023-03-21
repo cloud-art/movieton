@@ -1,10 +1,10 @@
 import React from 'react';
 import AuthForm from '../../AuthForm/AuthForm';
-import InputText from '../../InputText/InputText';
+import InputText from '../../UI/InputText/InputText';
 import { Controller, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import s from './Login.module.scss';
-import ButtonDefault from '../../ButtonDefault/ButtonDefault';
+import ButtonDefault from '../../UI/ButtonDefault/ButtonDefault';
 import { REGISTER_ROUTE } from '../../../utils/consts';
 
 function Login() {

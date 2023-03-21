@@ -1,9 +1,9 @@
 import React from 'react';
 import AuthForm from '../../AuthForm/AuthForm';
-import InputText from '../../InputText/InputText';
+import InputText from '../../UI/InputText/InputText';
 import { Controller, useForm } from 'react-hook-form';
 import s from './Register.module.scss';
-import ButtonDefault from '../../ButtonDefault/ButtonDefault';
+import ButtonDefault from '../../UI/ButtonDefault/ButtonDefault';
 
 function Register() {
     const {

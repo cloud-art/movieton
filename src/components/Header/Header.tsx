@@ -1,5 +1,5 @@
 import Burger from './components/Burger/Burger';
-import Logo from '../Logo/Logo';
+import Logo from '../UI/Logo/Logo';
 import classNames from 'classnames';
 import s from './Header.module.scss';
 import Dropdown from './components/Dropdown/Dropdown';
