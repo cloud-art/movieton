@@ -4,9 +4,9 @@ import { useActions } from '../../hooks/useActions'
 import { Controller, useForm } from 'react-hook-form'
 import { Title } from '../UI/Title/Title'
 import ButtonDefault from '../UI/ButtonDefault/ButtonDefault'
-import InputText from '../UI/InputText/InputText'
-import Slider from '../UI/Slider/Slider'
-import Select from '../UI/Select/Select'
+import { Slider } from '../UI/Slider/Slider'
+import { Select } from '../UI/Select/Select'
+import years, { genres, sortBy } from './FiltersConsts'
 
 interface FiltersFormProps{
 
@@ -17,10 +17,10 @@ const FiltersForm:React.FunctionComponent<FiltersFormProps> = () => {
 
     const { handleSubmit, control, getValues, reset } = useForm({
         defaultValues: {
-            sort: '1',
-            genres: '1',
-            rating: '1',
-            year: '1'
+            sort: sortBy[0],
+            genres: genres[0],
+            rating: [1, 10],
+            year: years[0]
         }
     })
 
@@ -38,7 +38,7 @@ const FiltersForm:React.FunctionComponent<FiltersFormProps> = () => {
                     control={control}
                     render = {({field: {value, onChange}}) => {
                         return (
-                            <Slider />
+                            <Slider values={value} min={1} max={10} onChange={onChange} step={1}/>
                         )
                     }}
                 />
@@ -47,7 +47,12 @@ const FiltersForm:React.FunctionComponent<FiltersFormProps> = () => {
                     control={control}
                     render = {({field: {value, onChange}}) => {
                         return (
-                            <Select />
+                            <Select 
+                                value={value}
+                                onChange={onChange}
+                                name="year"
+                                options={years}
+                            />
                         )
                     }}
                 />
@@ -56,7 +61,12 @@ const FiltersForm:React.FunctionComponent<FiltersFormProps> = () => {
                     control={control}
                     render = {({field: {value, onChange}}) => {
                         return (
-                            <Select />
+                            <Select 
+                                value={value}
+                                onChange={onChange}
+                                name="genres"
+                                options={genres}
+                            />
                         )
                     }}
                 />
@@ -65,7 +75,12 @@ const FiltersForm:React.FunctionComponent<FiltersFormProps> = () => {
                     control={control}
                     render = {({field: {value, onChange}}) => {
                         return (
-                            <Select />
+                            <Select 
+                                value={value}
+                                onChange={onChange}
+                                name="sort"
+                                options={sortBy}
+                            />
                         )
                     }}
                 />
