@@ -5,6 +5,7 @@
 
 .textField {
 	-webkit-appearance: none;
+	box-sizing: border-box;
 	appearance: none;
 	outline: none;
 	background-color: var(--color-white);

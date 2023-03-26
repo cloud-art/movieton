@@ -1,0 +1,9 @@
+.filter{
+    &:not(:first-child) {
+		margin-top: 20px;
+    }
+}
+
+.content{
+    padding-top: 10px
+}

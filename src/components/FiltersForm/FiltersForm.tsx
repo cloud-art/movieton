@@ -7,6 +7,7 @@ import ButtonDefault from '../UI/ButtonDefault/ButtonDefault'
 import { Slider } from '../UI/Slider/Slider'
 import { Select } from '../UI/Select/Select'
 import years, { genres, sortBy } from './FiltersConsts'
+import { Filter } from './components/Filter'
 
 interface FiltersFormProps{
 
@@ -29,16 +30,16 @@ const FiltersForm:React.FunctionComponent<FiltersFormProps> = () => {
             action="#"
             className={s.filters}
         >
-            <div className={s.top}>
-                <Title variant='h3'>Фильтры</Title>
-            </div>
             <div className={s.main}>
                 <Controller
                     name="rating"
                     control={control}
                     render = {({field: {value, onChange}}) => {
                         return (
-                            <Slider values={value} min={1} max={10} onChange={onChange} step={1}/>
+                            <Filter title="Рейтинг:">
+                                <Slider values={value} min={1} max={10} onChange={onChange} step={1}/>
+                            </Filter>
+                            
                         )
                     }}
                 />
@@ -47,12 +48,15 @@ const FiltersForm:React.FunctionComponent<FiltersFormProps> = () => {
                     control={control}
                     render = {({field: {value, onChange}}) => {
                         return (
-                            <Select 
-                                value={value}
-                                onChange={onChange}
-                                name="year"
-                                options={years}
-                            />
+                            <Filter title="Год выхода:">
+                                <Select 
+                                    value={value}
+                                    onChange={onChange}
+                                    name="year"
+                                    options={years}
+                                />
+                            </Filter>
+                            
                         )
                     }}
                 />
@@ -61,12 +65,15 @@ const FiltersForm:React.FunctionComponent<FiltersFormProps> = () => {
                     control={control}
                     render = {({field: {value, onChange}}) => {
                         return (
-                            <Select 
-                                value={value}
-                                onChange={onChange}
-                                name="genres"
-                                options={genres}
-                            />
+                            <Filter title="Жанр:">
+                                <Select 
+                                    value={value}
+                                    onChange={onChange}
+                                    name="genres"
+                                    options={genres}
+                                />
+                            </Filter>
+                            
                         )
                     }}
                 />
@@ -75,19 +82,21 @@ const FiltersForm:React.FunctionComponent<FiltersFormProps> = () => {
                     control={control}
                     render = {({field: {value, onChange}}) => {
                         return (
-                            <Select 
-                                value={value}
-                                onChange={onChange}
-                                name="sort"
-                                options={sortBy}
-                            />
+                            <Filter title="Сортировать по:">
+                                <Select 
+                                    value={value}
+                                    onChange={onChange}
+                                    name="sort"
+                                    options={sortBy}
+                                />
+                            </Filter>
                         )
                     }}
                 />
             </div>
             <div className={s.bottom}>
-                <ButtonDefault>Применить</ButtonDefault>
-                <ButtonDefault>Сбросить</ButtonDefault>
+                <ButtonDefault className={s.button}>Применить</ButtonDefault>
+                <ButtonDefault className={s.button}>Сбросить</ButtonDefault>
             </div>
         </form>
     )

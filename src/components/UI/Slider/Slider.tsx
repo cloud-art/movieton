@@ -35,9 +35,10 @@ export const Slider: React.FC<SliderProps> = ({ values, onChange, step, min, max
             </SliderTrack>
         )
     }
-    const handleRenderThumb:React.FC<IRenderThumbParams> = ({props, isDragged}) => {
+    const handleRenderThumb:React.FC<IRenderThumbParams> = ({props, isDragged, index}) => {
         return(
             <SliderThumb 
+                key={index}
                 props={props}
                 isDragged={isDragged}
             />

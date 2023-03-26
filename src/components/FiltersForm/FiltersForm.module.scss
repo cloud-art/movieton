@@ -1,4 +1,23 @@
+.filters{
+    
+}
+
+.main{
+}
+
 .bottom {
     display: flex;
     flex-direction: column;
+    margin-top: 25px;
+}
+
+.button{
+    &:not(:first-child) {
+		margin-top: 15px;
+
+		@media (max-width: 1024px) {
+			margin-top: 0;
+			margin-left: var(--offset);
+		}
+	}
 }

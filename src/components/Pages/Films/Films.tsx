@@ -7,8 +7,10 @@ const Films: React.FunctionComponent<FilmsProps> = () => {
     return (
         <div className={s.Films}>
             <div className="container">
-                <span>Films</span>
-                <FiltersForm />
+                <div className={s.container}>
+                    <FiltersForm />
+                    <div className={s.content}>Content</div>
+                </div>
             </div>
         </div>
     );
