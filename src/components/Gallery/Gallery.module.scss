@@ -1,0 +1,18 @@
+.slider{
+    position: relative;
+}
+
+.button{
+    position: absolute;
+    z-index: 10;
+    font-size: 46px;
+    top: 45%;
+}
+
+.buttonPrev{
+    left: 0;
+}
+
+.buttonNext{
+    right: 0;
+}

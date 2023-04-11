@@ -30,7 +30,7 @@ const PromoSlider: React.FC<PromoSliderProps> = ({data, classname}) => {
         slidesToScroll: 1,
         responsive: [
           {
-            breakpoint: 1280,
+            breakpoint: 1200,
             settings: {
                 adaptiveHeight: false,
                 variableWidth: false,

@@ -1,0 +1,23 @@
+.galleryCard{
+    // width: 100%;
+    height: 100%;
+    padding-right: 24px;
+    margin-bottom: 24px;
+}
+
+.img{
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+}
+
+.body{
+    width: 100%;
+    white-space: nowrap; /* Текст не переносится */
+    overflow: hidden; /* Обрезаем всё за пределами блока */
+    text-overflow: ellipsis; /* Добавляем многоточие */
+}
+
+.title{
+    font-size: 20px; 
+}
