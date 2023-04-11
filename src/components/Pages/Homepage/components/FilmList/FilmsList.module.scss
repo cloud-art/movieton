@@ -21,11 +21,16 @@
 	}
 }
 
+// .carousel{
+// 	height: 150px;
+// }
+
 .item{
     display: flex;
     align-items: center;
     justify-content: center;
     user-select: none;
+	height: 150px;
 }
 .item1{
     background-color: cornflowerblue;

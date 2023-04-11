@@ -1,9 +1,13 @@
-import React from 'react';
-import FilmsList from './components/FilmList/FilmsList';
-import s from './Homepage.module.scss';
-import PromoSlider from '../../UI/PromoSlider/PromoSlider';
+import React, { useState } from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import PromoSlider from './PromoSlider';
 
-function Homepage() {
+export default {
+	title: 'PromoSlider',
+	component: PromoSlider,
+} as ComponentMeta<typeof PromoSlider>;
+
+const Template: ComponentStory<typeof PromoSlider> = () => {
     const cards = [
         {
             id: 1,
@@ -31,15 +35,14 @@ function Homepage() {
         },
     ]
 
-    return (
-        <div className={s.Homepage}>
-            <PromoSlider data={cards} classname={s.promoSlider}></PromoSlider>
-            <div className="container">  
-                <FilmsList title={'Фильмы'}></FilmsList>
-                <FilmsList title={'Сериалы'}></FilmsList>
-            </div>
-        </div>
-    );
-}
 
-export default Homepage;
+    return (
+        <div>
+            <PromoSlider data={cards}
+            />
+        </div>
+        
+    );
+};
+
+export const Default = Template.bind({});
