@@ -6,6 +6,8 @@ import GalleryCard from '../GalleryCard/GalleryCard';
 import Button from '../UI/Button/Button';
 import classNames from 'classnames';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import "./slick.css"; 
+import "./slick-theme.css";
 
 type GalleryProps = {
     data: Array<IGalleryCard>;
@@ -13,9 +15,10 @@ type GalleryProps = {
 
 export const Gallery:React.FC<GalleryProps> = ({data}) => {
     const settings = {
+        className: s.gallerySlider,
         arrows: false,
         adaptiveHeight: true,
-        rows: 1,
+        dots: true,
         slidesToShow: 6,
         speed: 500,
         Infinity: false,
@@ -72,12 +75,13 @@ export const Gallery:React.FC<GalleryProps> = ({data}) => {
         <Slider ref={sliderRef} {...settings}>
             {data.map((e) => {
                 return(
-                    <div key={e.id}>
+                    <div className={s.galleryItem}>
                         <GalleryCard
                             img={e.img}
                             title={e.title}
                         />
                     </div>
+                    
                 )
             })}
         </Slider>

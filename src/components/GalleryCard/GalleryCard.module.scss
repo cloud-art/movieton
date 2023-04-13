@@ -1,18 +1,86 @@
 .galleryCard{
-    // width: 100%;
+    width: 100%;
     height: 100%;
-    padding-right: 24px;
-    margin-bottom: 24px;
+}
+
+.galleryBlock{
+    display: block;
+}
+
+.imageSection{
+    position: relative;
+    transition-duration: .4s;
+    &:hover{
+        transform: scale(1.05);
+        z-index: 10;
+    }
+}
+
+.poster{
+    position: relative;
+}
+
+.imgWrapper{
+
+}
+
+.properties{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(7,5,14,.8);
+    color: var(--color-white);
+    //TEMP
+    color: white;
+    //
+    opacity: 0;
+
+    -webkit-transition-duration: .4s;
+    -o-transition-duration: .4s;
+    transition-duration: .4s;
+
+    &:hover{
+        opacity: 1;
+    }
+}
+
+.inner{
+    z-index: 1;
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    font-size: 18px;
+    line-height: 16px;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.propertiesInfo{
+    margin-top: 12px;
+}
+
+.rating{
+    font-size: 26px;
 }
 
 .img{
+    // position: absolute;
+    // left: 0;
+    // top: 0;
     width: 100%;
     height: 100%;
-    border-radius: 15px;
+    vertical-align: bottom;
 }
 
-.body{
+.textSection{
     width: 100%;
+    box-sizing: border-box;
+    margin-top: 8px;
+    margin-bottom: 0;
+    padding: 0;
     white-space: nowrap; /* Текст не переносится */
     overflow: hidden; /* Обрезаем всё за пределами блока */
     text-overflow: ellipsis; /* Добавляем многоточие */
@@ -20,4 +88,8 @@
 
 .title{
     font-size: 20px; 
+}
+
+.imageSection, .poster, .imgWrapper,.img, .properties{
+    border-radius: 8px;
 }

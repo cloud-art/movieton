@@ -1,5 +1,13 @@
+.gallerySlider{
+    margin-right: -25px;
+}
+
 .slider{
     position: relative;
+}
+
+.galleryItem{
+    padding-right: 24px;
 }
 
 .button{
@@ -10,9 +18,9 @@
 }
 
 .buttonPrev{
-    left: 0;
+    left: -40px;
 }
 
 .buttonNext{
-    right: 0;
+    right: -40px;
 }

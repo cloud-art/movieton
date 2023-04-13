@@ -47,7 +47,7 @@ const Template: ComponentStory<typeof Gallery> = () => {
     ]
 
     return (
-        <div>
+        <div style={{width: `1260px`}}>
             <Gallery
                 data={data}
             />
