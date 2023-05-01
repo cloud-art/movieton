@@ -1,12 +1,23 @@
-.gallerySlider{
-    margin-right: -25px;
-}
-
-.slider{
+.viewport{
     position: relative;
 }
 
+.viewportInner{
+    margin-left: -12px;
+    margin-right: -12px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-top: -12px;
+    padding-top: 12px;
+}
+
 .galleryItem{
+    // transform: scale(0.95);
+    width: 100%;
+    display: inline-block;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
     padding-right: 24px;
 }
 

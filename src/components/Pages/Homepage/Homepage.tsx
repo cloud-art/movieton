@@ -33,7 +33,7 @@ function Homepage() {
 
     return (
         <div className={s.Homepage}>
-            <PromoSlider data={cards} classname={s.promoSlider}></PromoSlider>
+                <PromoSlider data={cards} classname={s.promoSlider}></PromoSlider>
             <div className="container">  
                 <FilmsList title={'Фильмы'}></FilmsList>
                 <FilmsList title={'Сериалы'}></FilmsList>

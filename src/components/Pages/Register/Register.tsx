@@ -27,7 +27,7 @@ function Register() {
     });
 
     return (
-        <div className={s.Login}>
+        <div className={s.Register}>
             <div className="container">
                 <AuthForm className={s.authForm}>
                     <h1>Регистрация</h1>

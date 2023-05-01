@@ -3,8 +3,13 @@
     // max-height: 200px;
 }
 
-.testDiv{
-    padding-right: 10px;
+.promoCard{
+    width: 100%;
+    display: inline-block;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 12px;
 }
 
 .button{

@@ -1,6 +1,11 @@
 .galleryCard{
     width: 100%;
     height: 100%;
+        transition-duration: .4s;
+    &:hover{
+        transform: scale(1.05);
+        z-index: 10;
+    }
 }
 
 .galleryBlock{
@@ -9,11 +14,6 @@
 
 .imageSection{
     position: relative;
-    transition-duration: .4s;
-    &:hover{
-        transform: scale(1.05);
-        z-index: 10;
-    }
 }
 
 .poster{
