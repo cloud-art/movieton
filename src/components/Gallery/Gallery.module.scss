@@ -1,8 +1,9 @@
-.viewport{
+.gallery{
     position: relative;
 }
 
-.viewportInner{
+.viewport{
+    // display: flex;
     margin-left: -12px;
     margin-right: -12px;
     padding-left: 12px;
@@ -12,26 +13,27 @@
 }
 
 .galleryItem{
-    // transform: scale(0.95);
     width: 100%;
+    padding: 10px;
     display: inline-block;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    padding-right: 24px;
 }
 
 .button{
     position: absolute;
-    z-index: 10;
+    z-index: 1;
     font-size: 46px;
     top: 45%;
+    color:black;
+
 }
 
 .buttonPrev{
-    left: -40px;
+    left: -30px;
 }
 
 .buttonNext{
-    right: -40px;
+    right: -30px;
 }

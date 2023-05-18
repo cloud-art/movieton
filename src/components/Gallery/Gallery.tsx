@@ -6,8 +6,8 @@ import GalleryCard from '../GalleryCard/GalleryCard';
 import Button from '../UI/Button/Button';
 import classNames from 'classnames';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
+import 'slick-carousel/slick/slick.scss'
+import 'slick-carousel/slick/slick-theme.scss'
 
 type GalleryProps = {
     data: Array<IGalleryCard>;
@@ -15,10 +15,7 @@ type GalleryProps = {
 
 export const Gallery:React.FC<GalleryProps> = ({data}) => {
     const settings = {
-        className: s.gallerySlider,
         arrows: false,
-        adaptiveHeight: true,
-        dots: true,
         rows: 1,
         slidesToShow: 6,
         speed: 500,
@@ -71,22 +68,21 @@ export const Gallery:React.FC<GalleryProps> = ({data}) => {
     };
     const sliderRef = useRef<Slider>(null)
   return (
-    <div className={s.viewport}>
-        <div className={s.viewportInner}>
+    <div className={s.gallery}>
+        <div className={s.viewport}>
             <Button className={classNames(s.button, s.buttonPrev)} onClick={() => sliderRef?.current?.slickPrev()}><FiChevronLeft/></Button>
-            <Slider ref={sliderRef} {...settings}>
-                {data.map((e) => {
-                    return(
-                        <div className={s.galleryItem}>
-                            <GalleryCard
-                                img={e.img}
-                                title={e.title}
-                            />
-                        </div>
-                        
-                    )
-                })}
-            </Slider>
+                <Slider ref={sliderRef} className={s.gallerySlider} {...settings}>
+                    {data.map((e) => {
+                        return(
+                            <div key={e.id} className={s.galleryItem}>
+                                <GalleryCard
+                                    img={e.img}
+                                    title={e.title}
+                                />
+                            </div>   
+                        )
+                    })}
+                </Slider>    
             <Button className={classNames(s.button, s.buttonNext)} onClick={() => sliderRef?.current?.slickNext()}><FiChevronRight/></Button>
         </div>
     </div>

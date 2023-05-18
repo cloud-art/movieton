@@ -1,27 +1,16 @@
 .galleryCard{
     width: 100%;
     height: 100%;
-        transition-duration: .4s;
-    &:hover{
-        transform: scale(1.05);
-        z-index: 10;
-    }
-}
-
-.galleryBlock{
-    display: block;
 }
 
 .imageSection{
     position: relative;
-}
-
-.poster{
-    position: relative;
-}
-
-.imgWrapper{
-
+    width: 100%;
+    transition-duration: .4s;
+    &:hover{
+        transform: scale(1.05);
+        z-index: 100000;
+    }
 }
 
 .properties{
@@ -67,9 +56,6 @@
 }
 
 .img{
-    // position: absolute;
-    // left: 0;
-    // top: 0;
     width: 100%;
     height: 100%;
     vertical-align: bottom;

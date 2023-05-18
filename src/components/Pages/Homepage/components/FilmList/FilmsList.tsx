@@ -18,32 +18,32 @@ const FilmsList: React.FC<FilmListProps> = ({title}) => {
     const data = [
         {
             id: 1,
-            img: "https://thumbs.dfs.ivi.ru/storage2/contents/1/1/24e317e380f8a6bf033e25c3b47cc9.jpg/234x360/?q=85",
+            img: "https://thumbs.dfs.ivi.ru/storage30/contents/4/4/cc4fbd79651622232f55e666642d23.jpg/234x360//?q=85",
             title: "Губка Боб Квадратные Штаны"
         },
         {
             id: 1,
-            img: "https://thumbs.dfs.ivi.ru/storage2/contents/1/1/24e317e380f8a6bf033e25c3b47cc9.jpg/234x360/?q=85",
+            img: "https://thumbs.dfs.ivi.ru/storage30/contents/4/4/cc4fbd79651622232f55e666642d23.jpg/234x360//?q=85",
             title: "Губка Боб Квадратные Штаны"
         },
         {
             id: 1,
-            img: "https://thumbs.dfs.ivi.ru/storage2/contents/1/1/24e317e380f8a6bf033e25c3b47cc9.jpg/234x360/?q=85",
+            img: "https://thumbs.dfs.ivi.ru/storage30/contents/4/4/cc4fbd79651622232f55e666642d23.jpg/234x360//?q=85",
             title: "Губка Боб Квадратные Штаны"
         },
         {
             id: 1,
-            img: "https://thumbs.dfs.ivi.ru/storage2/contents/1/1/24e317e380f8a6bf033e25c3b47cc9.jpg/234x360/?q=85",
+            img: "https://thumbs.dfs.ivi.ru/storage30/contents/4/4/cc4fbd79651622232f55e666642d23.jpg/234x360//?q=85",
             title: "Губка Боб Квадратные Штаны"
         },
         {
             id: 1,
-            img: "https://thumbs.dfs.ivi.ru/storage2/contents/1/1/24e317e380f8a6bf033e25c3b47cc9.jpg/234x360/?q=85",
+            img: "https://thumbs.dfs.ivi.ru/storage30/contents/4/4/cc4fbd79651622232f55e666642d23.jpg/234x360//?q=85",
             title: "Губка Боб Квадратные Штаны"
         },
         {
             id: 1,
-            img: "https://thumbs.dfs.ivi.ru/storage2/contents/1/1/24e317e380f8a6bf033e25c3b47cc9.jpg/234x360/?q=85",
+            img: "https://thumbs.dfs.ivi.ru/storage30/contents/4/4/cc4fbd79651622232f55e666642d23.jpg/234x360//?q=85",
             title: "Губка Боб Квадратные Штаны"
         },
         {

@@ -4,9 +4,9 @@ import { PromoCard } from '../PromoCard/PromoCard'
 import s from './PromoSlider.module.scss'
 import Button from '../Button/Button';
 import classNames from 'classnames';
-import { FiArrowLeftCircle, FiArrowRightCircle } from 'react-icons/fi';
-import "./slick.css"; 
-import "./slick-theme.css";
+import { FiArrowLeft, FiArrowLeftCircle, FiArrowRightCircle, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import 'slick-carousel/slick/slick.scss'
+import 'slick-carousel/slick/slick-theme.scss'
 import IPromoCard from '../../../types/IPromoCards';
 
 
@@ -44,7 +44,7 @@ const PromoSlider: React.FC<PromoSliderProps> = ({data, classname}) => {
     const sliderRef = useRef<Slider>(null)
   return (
     <div className={s.slider}>
-        <Button className={classNames(s.button, s.buttonPrev)} onClick={() => sliderRef?.current?.slickPrev()}><FiArrowLeftCircle/></Button>
+        <Button className={classNames(s.button, s.buttonPrev)} onClick={() => sliderRef?.current?.slickPrev()}><FiChevronLeft/></Button>
             <Slider ref={sliderRef} {...settings}>
                 {data.map((e) => {
                     return(
@@ -58,7 +58,7 @@ const PromoSlider: React.FC<PromoSliderProps> = ({data, classname}) => {
                     )
                 })}          
             </Slider>
-        <Button className={classNames(s.button, s.buttonNext)} onClick={() => sliderRef?.current?.slickNext()}><FiArrowRightCircle/></Button>
+        <Button className={classNames(s.button, s.buttonNext)} onClick={() => sliderRef?.current?.slickNext()}><FiChevronRight/></Button>
     </div>
   )
 }
