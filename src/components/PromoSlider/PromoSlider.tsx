@@ -1,13 +1,13 @@
 import React, { useRef } from 'react'
 import Slider from 'react-slick'
-import { PromoCard } from '../PromoCard/PromoCard'
+import { PromoCard } from '../UI/PromoCard/PromoCard'
 import s from './PromoSlider.module.scss'
-import Button from '../Button/Button';
+import Button from '../UI/Button/Button';
 import classNames from 'classnames';
 import { FiArrowLeft, FiArrowLeftCircle, FiArrowRightCircle, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import 'slick-carousel/slick/slick.scss'
 import 'slick-carousel/slick/slick-theme.scss'
-import IPromoCard from '../../../types/IPromoCards';
+import IPromoCard from '../../types/IPromoCards';
 
 
 interface PromoSliderProps {

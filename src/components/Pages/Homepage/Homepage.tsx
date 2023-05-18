@@ -1,7 +1,7 @@
 import React from 'react';
 import FilmsList from './components/FilmList/FilmsList';
 import s from './Homepage.module.scss';
-import PromoSlider from '../../UI/PromoSlider/PromoSlider';
+import PromoSlider from '../../PromoSlider/PromoSlider';
 
 function Homepage() {
     const cards = [
@@ -35,7 +35,7 @@ function Homepage() {
         <div className={s.Homepage}>
                 <PromoSlider data={cards} classname={s.promoSlider}></PromoSlider>
             <div className="container">  
-                <FilmsList title={'Фильмы'}></FilmsList>
+                <FilmsList title={'Фильмы'}></FilmsList>  
                 <FilmsList title={'Сериалы'}></FilmsList>
             </div>
         </div>

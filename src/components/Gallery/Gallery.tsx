@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import s from './Gallery.module.scss'
 import Slider from 'react-slick'
 import IGalleryCard from '../../types/IGalleryCard';
-import GalleryCard from '../GalleryCard/GalleryCard';
+import GalleryCard from '../UI/GalleryCard/GalleryCard';
 import Button from '../UI/Button/Button';
 import classNames from 'classnames';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
