@@ -16,7 +16,7 @@
     position: absolute;
     z-index: 1;
     font-size: 46px;
-    color: white;
+    color: var(--color-white);
     top: 45%;
 
     @media (max-width: 1280px) {
