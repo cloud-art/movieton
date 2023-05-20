@@ -8,6 +8,7 @@ import personRouter from "./personRouter";
 import reviewRouter from "./reviewRouter";
 import starRouter from "./starRouter";
 import userRouter from "./userRouter";
+
 const router = Router()
 
 router.use('/activity', activityRouter)
