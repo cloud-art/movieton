@@ -1,9 +1,10 @@
 import { Router } from "express";
+import CommentsController from "../controllers/commentRouter";
+
+const commentController = new CommentsController()
 const commentRouter = Router()
 
-// commentRouter.post('/')
-commentRouter.get('/', (req, res) => {
-    res.json({route:'comment'})
-})
+commentRouter.post('/create', commentController.create)
+commentRouter.get('/get', commentController.get)
 
 export default commentRouter
