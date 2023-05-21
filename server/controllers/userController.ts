@@ -1,15 +1,17 @@
+import express from 'express'
+
 class UserController {
-    async registration(req, res){
+    async registration(req: express.Request, res: express.Response){
 
     }
 
-    async login(req, res){
+    async login(req: express.Request, res: express.Response){
 
     }
 
-    async check(req, res){
+    async check(req: express.Request, res: express.Response){
 
     }
 }
 
-export default UserController
+export default new UserController()

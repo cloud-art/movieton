@@ -1,10 +1,9 @@
 import { Router } from "express";
 import FavouritesController from "../controllers/favouritesRouter";
 
-const favouritesController = new FavouritesController()
 const favouritesRouter = Router()
 
-favouritesRouter.post('/create', favouritesController.create)
-favouritesRouter.get('/get', favouritesController.get)
+favouritesRouter.post('/create', FavouritesController.create)
+favouritesRouter.get('/get', FavouritesController.get)
 
 export default favouritesRouter

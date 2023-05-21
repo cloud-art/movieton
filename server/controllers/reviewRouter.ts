@@ -1,11 +1,13 @@
+import express from 'express'
+
 class ReviewController {
-    async create(req, res){
+    async create(req: express.Request, res: express.Response){
 
     }
 
-    async get(req, res, id){
+    async get(req: express.Request, res: express.Response){
 
     }
 }
 
-export default ReviewController
+export default new ReviewController()

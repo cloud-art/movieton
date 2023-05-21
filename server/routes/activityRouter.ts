@@ -1,10 +1,9 @@
 import { Router } from "express";
 import ActivitiesController from "../controllers/activityRouter";
 
-const activityController = new ActivitiesController()
 const activityRouter = Router()
 
-activityRouter.post('/create', activityController.create)
-activityRouter.get('/get', activityController.get)
+activityRouter.post('/create', ActivitiesController.create)
+activityRouter.get('/get', ActivitiesController.get)
 
 export default activityRouter

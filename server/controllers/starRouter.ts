@@ -1,11 +1,13 @@
+import express from 'express'
+
 class StarController {
-    async create(req, res){
+    async create(req: express.Request, res: express.Response){
 
     }
 
-    async get(req, res, id){
+    async get(req: express.Request, res: express.Response){
 
     }
 }
 
-export default StarController
+export default new StarController()

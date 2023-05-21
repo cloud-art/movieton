@@ -1,11 +1,13 @@
+import express from 'express'
+
 class FavouritesController {
-    async create(req, res){
+    async create(req: express.Request, res: express.Response){
 
     }
 
-    async get(req, res, id){
+    async get(req: express.Request, res: express.Response){
 
     }
 }
 
-export default FavouritesController
+export default new FavouritesController()

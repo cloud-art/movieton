@@ -1,10 +1,9 @@
 import { Router } from "express";
 import GenreController from "../controllers/genreRouter";
 
-const genreController = new GenreController()
 const genreRouter = Router()
 
-genreRouter.post('/create', genreController.create)
-genreRouter.get('/get', genreController.get)
+genreRouter.post('/create', GenreController.create)
+genreRouter.get('/get', GenreController.get)
 
 export default genreRouter

@@ -1,11 +1,13 @@
+import express from 'express'
+
 class ActivitiesController {
-    async create(req, res){
+    async create(req: express.Request, res: express.Response): Promise<any>{
 
     }
 
-    async get(req, res, id){
+    async get(req: express.Request, res: express.Response){
 
     }
 }
 
-export default ActivitiesController
+export default new ActivitiesController()
