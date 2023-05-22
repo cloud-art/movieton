@@ -4,6 +4,6 @@ import ReviewController from "../controllers/reviewRouter";
 const reviewRouter = Router()
 
 reviewRouter.post('/create', ReviewController.create)
-reviewRouter.get('/get', ReviewController.get)
+reviewRouter.get('/getAll', ReviewController.getAll)
 
 export default reviewRouter

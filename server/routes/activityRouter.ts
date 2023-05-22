@@ -4,6 +4,6 @@ import ActivitiesController from "../controllers/activityRouter";
 const activityRouter = Router()
 
 activityRouter.post('/create', ActivitiesController.create)
-activityRouter.get('/get', ActivitiesController.get)
+activityRouter.get('/getAll', ActivitiesController.getAll)
 
 export default activityRouter

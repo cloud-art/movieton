@@ -21,6 +21,7 @@ module models {
         duration: {type: DataTypes.INTEGER, allowNull: false},
         date: {type: DataTypes.DATE, allowNull: false},
         age_limit: {type: DataTypes.INTEGER, allowNull: false},
+        img: {type: DataTypes.STRING, allowNull: false},
     })
     
     export const Review = sequelize.define('review', {

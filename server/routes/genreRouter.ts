@@ -4,6 +4,6 @@ import GenreController from "../controllers/genreRouter";
 const genreRouter = Router()
 
 genreRouter.post('/create', GenreController.create)
-genreRouter.get('/get', GenreController.get)
+genreRouter.get('/getAll', GenreController.getAll)
 
 export default genreRouter

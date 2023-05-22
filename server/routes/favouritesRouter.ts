@@ -4,6 +4,6 @@ import FavouritesController from "../controllers/favouritesRouter";
 const favouritesRouter = Router()
 
 favouritesRouter.post('/create', FavouritesController.create)
-favouritesRouter.get('/get', FavouritesController.get)
+favouritesRouter.get('/getAll', FavouritesController.getAll)
 
 export default favouritesRouter

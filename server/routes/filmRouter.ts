@@ -4,6 +4,7 @@ import FilmController from "../controllers/filmRouter";
 const filmRouter = Router()
 
 filmRouter.post('/create', FilmController.create)
-filmRouter.get('/get', FilmController.get)
+filmRouter.get('/getAll', FilmController.getAll)
+filmRouter.get('/getOne/:id', FilmController.getOne)
 
 export default filmRouter
