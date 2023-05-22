@@ -79,8 +79,8 @@ module models {
     Film.hasMany(Favourites)
     Favourites.belongsTo(Film)
     
-    Film.belongsToMany(Genre, {through: FilmGenres})
-    Genre.belongsToMany(Film, {through: FilmGenres})
+    Film.belongsToMany(Genre, {through: FilmGenres, as: 'genres'},)
+    Genre.belongsToMany(Film, {through: FilmGenres, as: 'Films'})
     
     Film.belongsToMany(Person, {through: Writers})
     Person.belongsToMany(Film, {through: Writers})

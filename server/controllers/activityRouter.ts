@@ -9,8 +9,8 @@ class ActivitiesController {
     }
 
     async getAll(req: express.Request, res: express.Response){
-        const activitys = await models.Activity.findAll()
-        return res.json(activitys)
+        const activities = await models.Activity.findAll()
+        return res.json(activities)
     }
 }
 
