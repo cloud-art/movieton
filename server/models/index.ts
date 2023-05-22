@@ -57,9 +57,13 @@ module models {
         birthday: {type: DataTypes.DATE, allowNull: false}, 
     })
     
-    export const Writers = sequelize.define('writers', {})
+    export const Writers = sequelize.define('writers', {
+        id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    })
     
-    export const Actors = sequelize.define('actors', {})
+    export const Actors = sequelize.define('actors', {
+        id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    })
     
     export const Activity = sequelize.define('activity', {
         id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
@@ -80,13 +84,23 @@ module models {
     Favourites.belongsTo(Film)
     
     Film.belongsToMany(Genre, {through: FilmGenres, as: 'genres'},)
-    Genre.belongsToMany(Film, {through: FilmGenres, as: 'Films'})
+    Genre.belongsToMany(Film, {through: FilmGenres, as: 'films'})
     
-    Film.belongsToMany(Person, {through: Writers})
-    Person.belongsToMany(Film, {through: Writers})
+    Film.hasMany(Writers)
+    Writers.belongsTo(Film)
+    Film.hasMany(Actors)
+    Actors.belongsTo(Film)
     
-    Film.belongsToMany(Person, {through: Actors})
-    Person.belongsToMany(Film, {through: Actors})
+    Person.hasMany(Writers)
+    Writers.belongsTo(Person)
+    Person.hasMany(Actors)
+    Actors.belongsTo(Person)
+
+    // Film.belongsToMany(Person, {through: Writers, as: 'writers'})
+    // Person.belongsToMany(Film, {through: Writers})
+    
+    // Film.belongsToMany(Person, {through: Actors, as: 'actors'})
+    // Person.belongsToMany(Film, {through: Actors})
     
     User.hasMany(Review)
     Review.belongsTo(User)
