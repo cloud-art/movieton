@@ -13,6 +13,16 @@ class GenreController {
         const genres = await models.Genre.findAll()
         return res.json(genres)
     }
+
+    async getOne(req: express.Request, res: express.Response){
+        const {id} = req.params
+        const genre = await models.Genre.findOne(
+            {
+                where: {id},
+            }
+        )
+        return res.json(genre)
+    }
 }
 
 export default new GenreController()

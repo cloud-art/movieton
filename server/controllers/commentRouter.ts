@@ -12,6 +12,16 @@ class CommentsController {
         const comments = await models.Comment.findAll()
         return res.json(comments)
     }
+
+    async getOne(req: express.Request, res: express.Response){
+        const {id} = req.params
+        const comment = await models.Comment.findOne(
+            {
+                where: {id},
+            }
+        )
+        return res.json(comment)
+    }
 }
 
 export default new CommentsController()

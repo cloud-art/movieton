@@ -5,5 +5,6 @@ const reviewRouter = Router()
 
 reviewRouter.post('/create', ReviewController.create)
 reviewRouter.get('/getAll', ReviewController.getAll)
+reviewRouter.get('/getOne/:id', ReviewController.getOne)
 
 export default reviewRouter

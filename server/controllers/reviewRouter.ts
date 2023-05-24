@@ -12,6 +12,16 @@ class ReviewController {
         const reviews = await models.Review.findAll()
         return res.json(reviews)
     }
+
+    async getOne(req: express.Request, res: express.Response){
+        const {id} = req.params
+        const review = await models.Review.findOne(
+            {
+                where: {id},
+            }
+        )
+        return res.json(review)
+    }
 }
 
 export default new ReviewController()

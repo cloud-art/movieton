@@ -12,6 +12,16 @@ class StarController {
         const stars = await models.Star.findAll()
         return res.json(stars)
     }
+
+    async getOne(req: express.Request, res: express.Response){
+        const {id} = req.params
+        const star = await models.Star.findOne(
+            {
+                where: {id},
+            }
+        )
+        return res.json(star)
+    }
 }
 
 export default new StarController()

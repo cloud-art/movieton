@@ -54,6 +54,33 @@ class UserController {
         const token = generateJWT(req.body.user.id, req.body.user.username, req.body.user.email, req.body.user.name, req.body.user.surname, req.body.user.role )
         res.json({token})
     }
+
+    async getAll(req: express.Request, res: express.Response){
+        const pageQueryg = req.query['page']
+        const limitQuery = req.query['limit']
+
+        const page = parseInt((String(pageQueryg))) || 1
+        const limit = parseInt((String(limitQuery))) || 9
+        let offset = page * limit - limit
+
+        const user = await models.User.findAndCountAll(
+            {
+                limit, 
+                offset
+            }
+        )
+        return res.json(user)
+    }
+
+    async getOne(req: express.Request, res: express.Response){
+        const {id} = req.params
+        const user = await models.User.findOne(
+            {
+                where: {id}
+            }
+        )
+        return res.json(user)
+    }
 }
 
 export default new UserController()

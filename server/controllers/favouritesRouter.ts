@@ -12,6 +12,16 @@ class FavouritesController {
         const favourites = await models.Favourites.findAll()
         return res.json(favourites)
     }
+
+    async getOne(req: express.Request, res: express.Response){
+        const {id} = req.params
+        const favourite = await models.Favourites.findOne(
+            {
+                where: {id},
+            }
+        )
+        return res.json(favourite)
+    }
 }
 
 export default new FavouritesController()
