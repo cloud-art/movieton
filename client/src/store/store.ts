@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { toggleReducer } from './reducers/toggleSlice';
 import { searchReducer } from './reducers/searchSlice';
+import { userReducer } from './reducers/userSlice';
 
 const rootReducer = combineReducers({
     toggleReducer,
-    searchReducer
+    searchReducer,
+    userReducer,
 });
 
 export const initStore = () => {

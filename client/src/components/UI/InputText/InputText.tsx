@@ -1,6 +1,8 @@
+import React from 'react';
 import classNames from 'classnames';
 import { ChangeEvent, InputHTMLAttributes, forwardRef } from 'react';
 import s from './InputText.module.scss';
+
 interface InputTextProps extends InputHTMLAttributes<HTMLInputElement> {
     label?: string;
     error?: boolean;

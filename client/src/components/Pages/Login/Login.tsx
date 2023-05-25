@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AuthForm from '../../AuthForm/AuthForm';
 import InputText from '../../UI/InputText/InputText';
 import { Controller, useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, redirect, useNavigate } from 'react-router-dom';
 import s from './Login.module.scss';
 import ButtonDefault from '../../UI/ButtonDefault/ButtonDefault';
-import { REGISTER_ROUTE } from '../../../utils/consts';
+import { HOMEPAGE_ROUTE, REGISTER_ROUTE } from '../../../utils/consts';
+import { login } from '../../../http/userApi';
+import { FiAlertCircle } from 'react-icons/fi';
+import { useActions } from '../../../hooks/useActions';
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
 
 function Login() {
+    const [errorMessage, setErrorMessage] = useState<string>('')
+    const { setUser } = useActions()
+    const navigate = useNavigate()
+
     const {
         handleSubmit,
         control,
@@ -15,15 +23,21 @@ function Login() {
         reset
     } = useForm({
         defaultValues: {
-            email: '',
+            username: '',
             password: ''
         }
     });
 
-    const handleLogin = handleSubmit((data) => {
-        console.log('Успешная авторизация', data);
-        // переадрессация
-        reset();
+    const handleLogin = handleSubmit(async (data) => {
+        try{
+            const user = await login(data.username, data.password)
+            setUser(user)
+            setErrorMessage('')
+            // переадрессация
+            navigate(HOMEPAGE_ROUTE) 
+        }catch(e){
+            setErrorMessage(e.response.data.message)
+        }
     });
 
     return (
@@ -32,26 +46,22 @@ function Login() {
                 <AuthForm className={s.authForm}>
                     <h1>Вход</h1>
                     <Controller
-                        name="email"
+                        name="username"
                         control={control}
                         rules={{
                             required: { value: true, message: 'Поле обязательное' },
-                            pattern: {
-                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                message: 'Неверный email'
-                            }
                         }}
                         render={({ field: { value, onChange } }) => {
                             return (
                                 <InputText
                                     className={s.inputForm}
-                                    type="email"
-                                    label="E-mail"
-                                    placeholder="Введите почтовый адрес"
+                                    type="username"
+                                    label="Никнейм"
+                                    placeholder="Введите никнейм"
                                     value={value}
                                     onChange={onChange}
-                                    errorMessage={errors.email?.message}
-                                    error={errors.hasOwnProperty('email')}
+                                    errorMessage={errors.username?.message}
+                                    error={errors.hasOwnProperty('username')}
                                 />
                             );
                         }}
@@ -94,8 +104,20 @@ function Login() {
                             <span>Зарегистрироваться</span>
                         </Link>
                     </div>
-                    
                 </AuthForm>
+                {errorMessage !== '' &&
+                    <div className={s.errorWrapper}>
+                        <div className={s.error}>
+                            <div className={s.errorImage}>
+                                <FiAlertCircle />
+                            </div>
+                            <div className={s.errorInfo}>
+                                <span>Ошибка</span>
+                                <span className={s.errorMessage}>{errorMessage}</span>
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     );

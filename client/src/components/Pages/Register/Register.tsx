@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AuthForm from '../../AuthForm/AuthForm';
 import InputText from '../../UI/InputText/InputText';
 import { Controller, useForm } from 'react-hook-form';
 import s from './Register.module.scss';
 import ButtonDefault from '../../UI/ButtonDefault/ButtonDefault';
+import { registration } from '../../../http/userApi';
+import { useActions } from '../../../hooks/useActions';
+import { useNavigate } from 'react-router-dom';
+import { HOMEPAGE_ROUTE } from '../../../utils/consts';
+import { FiAlertCircle } from 'react-icons/fi';
 
 function Register() {
+    const [errorMessage, setErrorMessage] = useState<string>('')
+    const { setUser } = useActions()
+    const navigate = useNavigate()
+    
     const {
         handleSubmit,
         control,
@@ -13,6 +22,7 @@ function Register() {
         reset
     } = useForm({
         defaultValues: {
+            username: '',
             name: '',
             surname: '',
             email: '',
@@ -20,8 +30,16 @@ function Register() {
         }
     });
 
-    const handleRegister = handleSubmit((data) => {
-        console.log('Успешная регистрация', data);
+    const handleRegister = handleSubmit(async (data) => {
+        try{
+            const user = await registration(data.username, data.email, data.password, data.name, data.surname)
+            setUser(user)
+            setErrorMessage('')
+            // переадрессация
+            navigate(HOMEPAGE_ROUTE)
+        }catch(e){
+            setErrorMessage(e.response.data.message)
+        }
         // переадрессация
         reset();
     });
@@ -31,6 +49,31 @@ function Register() {
             <div className="container">
                 <AuthForm className={s.authForm}>
                     <h1>Регистрация</h1>
+                    <Controller
+                        name="username"
+                        control={control}
+                        rules={{
+                            required: { value: true, message: 'Поле обязательное' },
+                            minLength: { value: 4, message: "Слишком коротко"},
+                            pattern: {
+                                value: /^([a-zA-Zа-яА-Я0-9])+$/i,
+                                message: 'Неверный формат'
+                            }
+                        }}
+                        render={({ field: { value, onChange } }) => {
+                            return (
+                                <InputText
+                                    className={s.inputForm}
+                                    label="Никнейм"
+                                    placeholder="Введите никнейм"
+                                    value={value}
+                                    onChange={onChange}
+                                    errorMessage={errors.username?.message}
+                                    error={errors.hasOwnProperty('username')}
+                                />
+                            );
+                        }}
+                    />
                     <Controller
                         name="name"
                         control={control}
@@ -139,6 +182,19 @@ function Register() {
                         Регистрация
                     </ButtonDefault>
                 </AuthForm>
+                {errorMessage !== '' &&
+                    <div className={s.errorWrapper}>
+                        <div className={s.error}>
+                            <div className={s.errorImage}>
+                                <FiAlertCircle />
+                            </div>
+                            <div className={s.errorInfo}>
+                                <span>Ошибка</span>
+                                <span className={s.errorMessage}>{errorMessage}</span>
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     );
