@@ -14,7 +14,7 @@ function App() {
     useEffect(()=>{
         check().then(data=>{
             setAuth(true)
-        }).finally(() => {setLoading(false); console.log('auth')})
+        }).finally(() => {setLoading(false)})
     }, [])
 
     if (loading){
