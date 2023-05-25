@@ -24,9 +24,12 @@ export const userSlice = createSlice({
             state.role = action.payload.role;
             state.isAuth = true;
         },
+        setAuth: (state, action) => {
+            state.isAuth = action.payload
+        }
     }
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser, setAuth } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;
