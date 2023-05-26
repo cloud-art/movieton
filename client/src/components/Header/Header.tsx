@@ -9,13 +9,24 @@ import useOnClickOutside from '../../hooks/useOnClickOutside';
 import { Link } from 'react-router-dom';
 import { LOGIN_ROUTE } from '../../utils/consts';
 import Search from '../Search/Search';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
+import Button from '../UI/Button/Button';
 
 interface HeaderProps {}
 
 const Header: React.FunctionComponent<HeaderProps> = () => {
     const { toggleMenu } = useActions();
+    const user = useTypedSelector(state => state.userReducer)
+    const {setUser, setAuth} = useActions()
     const dropDownRef = useRef<HTMLDivElement>(null);
     useOnClickOutside(dropDownRef, () => toggleMenu(false));
+
+    const handleExit = () => {
+        setUser({}); 
+        setAuth(false); 
+        localStorage.setItem('token', '')
+        console.log(user);
+    }
 
     return (
         <header className={s.Header}>
@@ -26,9 +37,13 @@ const Header: React.FunctionComponent<HeaderProps> = () => {
                     <Logo />
                 </div>
                 <Search />
+                {!user.isAuth ?
                 <Link to={LOGIN_ROUTE} className={s.link}>
                     <span>Войти</span>
                 </Link>
+                : <Button onClick={handleExit} className={s.link}>Выйти</Button>
+                }
+
             </div>
         </header>
     );
