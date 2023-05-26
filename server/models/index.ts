@@ -66,8 +66,16 @@ module models {
     export const Writers = sequelize.define('writers', {
         id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     })
+
+    export const FilmsWriters = sequelize.define('films_writers', {
+        id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    })
     
     export const Actors = sequelize.define('actors', {
+        id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    })
+    
+    export const FilmsActors = sequelize.define('films_actors', {
         id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     })
     
@@ -88,9 +96,12 @@ module models {
     
     Film.hasMany(FavouriteFilms)
     FavouriteFilms.belongsTo(Film)
-    
-    // Film.hasMany(Favourites)
-    // Favourites.belongsTo(Film)
+
+    Film.belongsToMany(Writers, {through: FilmsWriters, as: 'filmWriters'})
+    Writers.belongsToMany(Film, {through: FilmsWriters, as: 'writersFilms'})
+
+    Film.belongsToMany(Actors, {through: FilmsActors, as: 'filmActors'})
+    Actors.belongsToMany(Film, {through: FilmsActors, as: 'actorsFilms'})
     
     Film.belongsToMany(Genre, {through: FilmGenres, as: 'genres'},)
     Genre.belongsToMany(Film, {through: FilmGenres, as: 'films'})

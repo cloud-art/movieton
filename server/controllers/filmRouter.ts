@@ -75,7 +75,12 @@ class FilmController {
                 offset,
                 include: [
                     {model: models.Genre, as: 'genres'},
-                    {model: models.Person},
+                    {model: models.Writers, include: [
+                        {model: models.Person}
+                    ]},
+                    {model: models.Actors, include: [
+                        {model: models.Person}
+                    ]}
                 ]
             }
         )
@@ -89,8 +94,12 @@ class FilmController {
                 where: {id},
                 include: [
                     {model: models.Genre, as: 'genres'},
-                    {model: models.Actors, as: 'actors'},
-                    {model: models.Writers, as: 'writers'},
+                    {model: models.Writers, include: [
+                        {model: models.Person}
+                    ]},
+                    {model: models.Actors, include: [
+                        {model: models.Person}
+                    ]}
                 ]
             }
         )
