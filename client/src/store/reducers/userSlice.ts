@@ -1,15 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 import IUser from '../../types/IUser';
 
-const initialState: IUser = {
-    id: 0,
-    username: '',
-    email: '',
-    password: '',
-    name: '',
-    surname: '',
-    role: 'GUEST',
+const initialState: { isAuth: boolean, user: IUser} = {
     isAuth: false,
+    user: {
+        id: 0,
+        username: '',
+        email: '',
+        password: '',
+        name: '',
+        surname: '',
+        role: 'GUEST',
+        isAuth: false,
+    }
 };
 
 export const userSlice = createSlice({
@@ -17,24 +20,12 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         setUser: (state, action) => {
-            state.id = action.payload.id,
-            state.username = action.payload.username,
-            state.email = action.payload.email,
-            state.password = action.payload.password,
-            state.name = action.payload.name,
-            state.surname = action.payload.surname,
-            state.role = action.payload.role,
+            state.user = action.payload
             state.isAuth = true
         },
         setAuth: (state, action) => {
             if (action.payload === false){
-                state.id = initialState.id,
-                state.username = initialState.username,
-                state.email = initialState.email,
-                state.password = initialState.password,
-                state.name = initialState.name,
-                state.surname = initialState.surname,
-                state.role = initialState.role
+                state.user = initialState.user
             }
             state.isAuth = action.payload
         },
