@@ -1,4 +1,4 @@
-export default interface IFilm {
+export interface IFilm {
     id?: number;
     title: string;
     desc: string;
@@ -8,4 +8,11 @@ export default interface IFilm {
     date: Date;
     age_limit: number;
     img: string;
+}
+
+export interface IFilmsInfo{
+    isFetching?: boolean;
+    isLoading?: boolean;
+    count: number;
+    films: Array<IFilm>;
 }

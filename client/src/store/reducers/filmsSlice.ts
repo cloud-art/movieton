@@ -1,14 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
-import IFilm from '../../types/IFilm';
+import { IFilmInfo } from '../../types/IFilm';
 
-const initialState: Array<IFilm> = [];
+const initialState: IFilmInfo = {
+    count: 0,
+    films: [],
+};
 
 export const filmsSlice = createSlice({
     name: 'films',
     initialState,
     reducers: {
         setFilms: (state, action) => {
-            state = action.payload
+            state.count = action.payload.count
+            state.films = [...action.payload.rows]
         }
     }
 });

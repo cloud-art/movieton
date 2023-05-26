@@ -4,6 +4,8 @@ import {useTypedSelector} from '../../../hooks/useTypedSelector'
 import s from './Films.module.scss';
 import { useActions } from '../../../hooks/useActions';
 import { fetchFilms } from '../../../http/filmApi';
+import ButtonDefault from '../../UI/ButtonDefault/ButtonDefault';
+import FilmsGrid from '../../FilmsGrid/FilmsGrid';
 
 interface FilmsProps {}
 
@@ -12,7 +14,9 @@ const Films: React.FunctionComponent<FilmsProps> = () => {
     const { setFilms } = useActions()
 
     useEffect(() => {
-        fetchFilms().then(data => setFilms(data)).finally(() => console.log(films))
+        fetchFilms().then(data => {
+            setFilms(data)
+        })
     }, [])
 
     return (
@@ -20,7 +24,9 @@ const Films: React.FunctionComponent<FilmsProps> = () => {
             <div className="container">
                 <div className={s.container}>
                     <FiltersForm />
-                    <div className={s.content}>Content</div>
+                    <div className={s.content}>
+                        <FilmsGrid data={films}/>
+                    </div>
                 </div>
             </div>
         </div>
