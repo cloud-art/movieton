@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IFilmInfo } from '../../types/IFilm';
+import { IFilmsInfo } from '../../types/IFilm';
 
-const initialState: IFilmInfo = {
+const initialState: IFilmsInfo = {
     count: 0,
+    isLoading: false,
+    isFetching: false,
     films: [],
 };
 
@@ -11,8 +13,12 @@ export const filmsSlice = createSlice({
     initialState,
     reducers: {
         setFilms: (state, action) => {
+            // state.isLoading = true
+            // console.log(state.isLoading)
             state.count = action.payload.count
             state.films = [...action.payload.rows]
+            // state.isLoading = false
+            // console.log(state.isLoading)
         }
     }
 });

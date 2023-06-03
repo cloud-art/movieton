@@ -1,8 +1,8 @@
 import React, { useRef } from 'react'
 import s from './Gallery.module.scss'
 import Slider from 'react-slick'
-import IGalleryCard from '../../types/IGalleryCard';
-import GalleryCard from '../UI/GalleryCard/GalleryCard';
+import IFilmCard from '../../types/IFilmCard';
+import FilmCard from '../UI/FilmCard/FilmCard';
 import Button from '../UI/Button/Button';
 import classNames from 'classnames';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
@@ -10,7 +10,7 @@ import 'slick-carousel/slick/slick.scss'
 import 'slick-carousel/slick/slick-theme.scss'
 
 type GalleryProps = {
-    data: Array<IGalleryCard>;
+    data: Array<IFilmCard>;
 }
 
 export const Gallery:React.FC<GalleryProps> = ({data}) => {
@@ -75,9 +75,8 @@ export const Gallery:React.FC<GalleryProps> = ({data}) => {
                     {data.map((e) => {
                         return(
                             <div key={e.id} className={s.galleryItem}>
-                                <GalleryCard
-                                    img={e.img}
-                                    title={e.title}
+                                <FilmCard
+                                    data={e}
                                 />
                             </div>   
                         )

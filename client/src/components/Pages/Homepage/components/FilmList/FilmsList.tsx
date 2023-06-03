@@ -5,6 +5,7 @@ import { useState } from 'react'
 import ButtonDefault from '../../../../UI/ButtonDefault/ButtonDefault'
 import { Title } from '../../../../UI/Title/Title'
 import { Gallery } from '../../../../Gallery/Gallery'
+import IFilmCard from '../../../../../types/IFilmCard'
 
 interface FilmListProps {
     title: String
@@ -15,7 +16,7 @@ const FilmsList: React.FC<FilmListProps> = ({title}) => {
     //     [{id: '1'}, {id: '2'}, {id: '3'}, {id: '4'}, {id: '5'}, {id: '6'}]
     // )
 
-    const data = [
+    const data: Array<IFilmCard> = [
         {
             id: 1,
             img: "https://thumbs.dfs.ivi.ru/storage30/contents/4/4/cc4fbd79651622232f55e666642d23.jpg/234x360//?q=85",

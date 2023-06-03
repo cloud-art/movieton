@@ -1,19 +1,20 @@
 import React from 'react'
-import s from './GalleryCard.module.scss'
+import s from './FilmCard.module.scss'
 import classNames from 'classnames'
 import PropertiesRow from './components/PropertiesRow'
+import IFilmCard from '../../../types/IFilmCard'
 
-type galleryCardProps = {
-    img: string;
-    title: string;
+type filmCardProps = {
+    data: IFilmCard;
+    classname?: string;
 }
 
-const GalleryCard:React.FC<galleryCardProps> = ({img, title}) => {
+const FilmCard:React.FC<filmCardProps> = ({data, classname}) => {
   return (
-    <div className={classNames(s.galleryCard)}>
+    <div className={classNames(s.card, classname)}>
         <div className={s.imageSection}>
             <div className={s.imgWrapper}>
-                <img className={s.img} src={img} />
+                <img className={s.img} src={data.img} />
             </div>
             <div className={s.properties}>
                 <div className={s.inner}>
@@ -26,10 +27,10 @@ const GalleryCard:React.FC<galleryCardProps> = ({img, title}) => {
             </div>
         </div>
         <div className={s.textSection}>
-            <span className={s.title}>{title}</span>
+            <span className={s.title}>{data.title}</span>
         </div>
     </div>
   )
 }
 
-export default GalleryCard
+export default FilmCard
