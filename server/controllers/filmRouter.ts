@@ -81,7 +81,8 @@ class FilmController {
                     {model: models.Actors, include: [
                         {model: models.Person}
                     ]}
-                ]
+                ],
+                distinct:true
             }
         )
         return res.json(films)
