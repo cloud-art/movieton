@@ -1,6 +1,6 @@
 import React, { FC, ReactComponentElement, ReactNode } from 'react';
 
-export default interface IGalleryCard {
+export default interface IFilmCard {
     id: number;
     img: string;
     title: string;

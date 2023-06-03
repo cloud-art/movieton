@@ -6,18 +6,27 @@ import { useActions } from '../../../hooks/useActions';
 import { fetchFilms } from '../../../http/filmApi';
 import ButtonDefault from '../../UI/ButtonDefault/ButtonDefault';
 import FilmsGrid from '../../FilmsGrid/FilmsGrid';
+import { IPage } from '../../../types/IPage';
 
 interface FilmsProps {}
 
 const Films: React.FunctionComponent<FilmsProps> = () => {
     const films = useTypedSelector(state => state.filmsReducer)
+    const page = useTypedSelector(state => state.paginationReducer)
     const { setFilms } = useActions()
 
     useEffect(() => {
-        fetchFilms().then(data => {
+        fetchFilms(page).then(data => {
             setFilms(data)
         })
     }, [])
+
+    useEffect(() => {
+        console.log(films)
+        fetchFilms(page.page).then(data => {
+            setFilms(data)
+        })
+    }, [page])
 
     return (
         <div className={s.Films}>
@@ -25,7 +34,7 @@ const Films: React.FunctionComponent<FilmsProps> = () => {
                 <div className={s.container}>
                     <FiltersForm />
                     <div className={s.content}>
-                        <FilmsGrid data={films}/>
+                        <FilmsGrid data={films} isLoading={films.isLoading} isFetching={films.isFetching}/>
                     </div>
                 </div>
             </div>

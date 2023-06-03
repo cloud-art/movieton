@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { IPage } from '../../types/IPage';
 
-const initialState = {
+const initialState: IPage = {
 	page: 1,
     offset: 12
 };
