@@ -1,37 +1,44 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { IFilters } from '../../types/IFilters';
 
-const initialState = {
-	filters: {
-		year: `1960-${new Date().getFullYear()}`,
-		rating: '1-10',
-		sortByRelease: '-1',
-		genre: '',
-	},
+const initialState:IFilters = {
+	year: ``,
+	rating: '',
+	ratingLower: '1',
+	ratingUpper: '10',
+	sortType: '1',
+	genre: '',
 };
 
 export const filtersSlice = createSlice({
 	name: 'filters',
 	initialState,
 	reducers: {
-		setFiterYears: (state, action) => {
-			state.filters.year = action.payload;
+		setFiterYear: (state, action) => {
+			state.year = action.payload;
 		},
-		setFilterRatings: (state, action) => {
-			state.filters.rating = action.payload;
+		setFilterRating: (state, action) => {
+			state.rating = action.payload;
 		},
-		setSortByRelease: (state, action) => {
-			state.filters.sortByRelease = action.payload;
+		setFilterRatingLower: (state, action) => {
+			state.ratingLower = action.payload;
+		},
+		setFilterRatingUpper: (state, action) => {
+			state.ratingUpper = action.payload;
+		},
+		setSortType: (state, action) => {
+			state.sortType = action.payload;
 		},
 		setFilterGenre: (state, action) => {
-			state.filters.genre = action.payload;
+			state.genre = action.payload;
 		},
-		resetFilters: (state) => {
-			state.filters = initialState.filters;
+		resetFilter: (state) => {
+			state = initialState;
 		},
 	},
 });
 
-export const { setFiterYears, setFilterRatings, setSortByRelease, setFilterGenre, resetFilters } =
+export const { setFiterYear, setFilterRating, setFilterRatingLower, setFilterRatingUpper, setSortType, setFilterGenre, resetFilter } =
 	filtersSlice.actions;
 
 export const filtersReducer = filtersSlice.reducer;

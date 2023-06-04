@@ -4,6 +4,7 @@ import { searchReducer } from './reducers/searchSlice';
 import { userReducer } from './reducers/userSlice';
 import { filmsReducer } from './reducers/filmsSlice';
 import { paginationReducer } from './reducers/paginationSlice';
+import { filtersReducer } from './reducers/filterSlice';
 
 const rootReducer = combineReducers({
     toggleReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
     userReducer,
     filmsReducer,
     paginationReducer,
+    filtersReducer,
 });
 
 export const initStore = () => {
