@@ -5,6 +5,9 @@ import { v4 as uuidv4 } from 'uuid'
 import { UploadedFile } from 'express-fileupload'
 import { IGenre } from '../types/IGenre'
 import { IPerson } from '../types/IPerson'
+import Sequelize from 'sequelize'
+import sequelize from '../db'
+import { Op } from 'sequelize'
 
 class FilmController {
     async create(req: express.Request, res: express.Response, next: express.NextFunction){
@@ -62,6 +65,7 @@ class FilmController {
     }
 
     async getAll(req: express.Request, res: express.Response){
+        const {rating, ratingLower, ratingUpper, year, genre, sortType} = req.query
         const pageQueryg = req.query['page']
         const limitQuery = req.query['limit']
 
@@ -69,22 +73,60 @@ class FilmController {
         const limit = parseInt((String(limitQuery))) || 9
         let offset = page * limit - limit
 
+        let filmOrder: Sequelize.Order | undefined = []
+
+        if (sortType){
+            if (sortType == '1') filmOrder.push(['rating', 'DESC'])
+            if (sortType == '2') filmOrder.push([sequelize.literal('(SELECT COUNT(*) FROM "comments" WHERE "film"."id" = "comments"."filmId")'), 'DESC'])
+        }
+
+        let genresWhere:Sequelize.WhereOptions<any> | undefined = {};
+
+        if (genre){
+            genresWhere['id'] = genre
+        }
+
         const films = await models.Film.findAndCountAll(
             {
+                attributes: {
+                    include: [
+                        [sequelize.literal('(SELECT COUNT(*) FROM "comments" WHERE "film"."id" = "comments"."filmId")'), 'commentsCount'],
+                    ]
+                },
+                where: {
+                      [Op.and]: [
+                        Sequelize.where(
+                            sequelize.cast(sequelize.col('film.date'), 'varchar'),
+                            {[Op.like]: year? `${year}-__-__%` : '%'}
+                        ),
+                        Sequelize.where(
+                            sequelize.cast(sequelize.col('film.rating'), 'varchar'),
+                            {[Op.like]: rating || '%'}
+                        ),
+                        {rating: {[Op.gte]: ratingLower? ratingLower: 0 }},
+                        {rating: {[Op.lte]: ratingUpper? ratingUpper: 10 }},
+                      ],
+                      
+                },
                 limit, 
                 offset,
                 include: [
-                    {model: models.Genre, as: 'genres'},
+                    {model: models.Genre, 
+                        as: 'genres', 
+                        where: genresWhere,
+                    },
                     {model: models.Writers, include: [
                         {model: models.Person}
                     ]},
                     {model: models.Actors, include: [
                         {model: models.Person}
-                    ]}
+                    ]},
+                    {model: models.Comment},
                 ],
-                distinct:true
+                order: filmOrder,
+                distinct: true
             }
-        )
+        ) 
         return res.json(films)
     }
 
@@ -92,6 +134,11 @@ class FilmController {
         const {id} = req.params
         const film = await models.Film.findOne(
             {
+                attributes: {
+                    include: [
+                        [sequelize.literal('(SELECT COUNT(*) FROM "comments" WHERE "film"."id" = "comments"."filmId")'), 'commentsCount'],
+                    ]
+                },
                 where: {id},
                 include: [
                     {model: models.Genre, as: 'genres'},
@@ -100,7 +147,8 @@ class FilmController {
                     ]},
                     {model: models.Actors, include: [
                         {model: models.Person}
-                    ]}
+                    ]},
+                    {model: models.Comment},
                 ]
             }
         )

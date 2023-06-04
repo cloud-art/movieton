@@ -3,8 +3,8 @@ import models from '../models'
 
 class CommentsController {
     async create(req: express.Request, res: express.Response){
-        const {title, userId, filmId} = req.body
-        const review = await models.Comment.create({title, userId, filmId})
+        const {text, userId, filmId} = req.body
+        const review = await models.Comment.create({text, userId, filmId})
         return res.json(review)
     }
 
