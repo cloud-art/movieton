@@ -15,6 +15,7 @@ interface FiltersFormProps{
 
 const FiltersForm:React.FunctionComponent<FiltersFormProps> = () => {
     const { toggleFilters } = useActions()
+    const {setPage, setFilterGenre, setFilterRating, setFilterRatingLower, setFilterRatingUpper, setFiterYear, setSortType} = useActions()
 
     const { handleSubmit, control, getValues, reset } = useForm({
         defaultValues: {
@@ -25,9 +26,28 @@ const FiltersForm:React.FunctionComponent<FiltersFormProps> = () => {
         }
     })
 
+    const onSubmit = handleSubmit((data) => {
+        const { sort, rating, year, genres } = data;
+
+		const ratingString = `${rating[0]}-${rating[1]}`;
+		const yearString = `${year[0]}-${year[1]}`;
+		const ratings = rating[0] !== rating[1] ? ratingString : rating[0];
+		const years = year[0] !== year[1] ? yearString : year[0];
+		const genre = genres.value !== '' ? `search[]=${genres.value}&field[]=genres.name` : '';
+
+		setPage(1);
+		setFilterRatingLower(rating[0]);
+		setFilterRatingUpper(rating[1]);
+		setFiterYear(year.value);
+		setSortType(sort.value);
+		setFilterGenre(genres.value);
+        console.log('submit')
+    })
+
     return (
         <form 
             action="#"
+            onSubmit={onSubmit}
             className={s.filters}
         >
             <div className={s.main}>

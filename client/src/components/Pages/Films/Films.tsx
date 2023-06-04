@@ -13,20 +13,28 @@ interface FilmsProps {}
 const Films: React.FunctionComponent<FilmsProps> = () => {
     const films = useTypedSelector(state => state.filmsReducer)
     const page = useTypedSelector(state => state.paginationReducer)
+    const filters = useTypedSelector(state => state.filtersReducer)
     const { setFilms } = useActions()
 
     useEffect(() => {
-        fetchFilms(page).then(data => {
+        fetchFilms(page.page, filters).then(data => {
             setFilms(data)
         })
     }, [])
 
     useEffect(() => {
         console.log(films)
-        fetchFilms(page.page).then(data => {
+        fetchFilms(page.page, filters).then(data => {
             setFilms(data)
         })
     }, [page])
+
+    useEffect(() => {
+        console.log(filters)
+        fetchFilms(page.page, filters).then(data => {
+            setFilms(data)
+        })
+    }, [filters])
 
     return (
         <div className={s.Films}>
