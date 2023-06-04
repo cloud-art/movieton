@@ -82,7 +82,7 @@ class FilmController {
 
         let genresWhere:Sequelize.WhereOptions<any> | undefined = {};
 
-        if (genre){
+        if (genre && genre !== ''){
             genresWhere['id'] = genre
         }
 
