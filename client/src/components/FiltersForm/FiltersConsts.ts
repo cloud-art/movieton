@@ -16,7 +16,9 @@ type DictionaryType = {
 
 const currentYear = new Date().getFullYear()
 
-const years:Array<DictionaryType> = []
+const years:Array<DictionaryType> = [
+    {label: 'Все года', value: ''}
+]
 
 for (let i = currentYear; i > currentYear - 50; i--){
     years.push({label: i.toString(), value: i.toString()})

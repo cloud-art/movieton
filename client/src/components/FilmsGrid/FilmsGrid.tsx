@@ -10,19 +10,20 @@ import LoadSpinner from '../UI/LoadSpinner/LoadSpinner';
 import { IPage } from '../../types/IPage';
 
 interface FilmGridProps {
-    data: IFilmsInfo;
+    filmsInfo: IFilmsInfo;
     isLoading: boolean;
     isFetching: boolean;
 }
 
-const FilmsGrid: FC<FilmGridProps> = ({data, isLoading, isFetching}) => {
+const FilmsGrid: FC<FilmGridProps> = ({filmsInfo, isLoading, isFetching}) => {
     const page:IPage = useTypedSelector((state) => state.paginationReducer);
     const { setPage } = useActions();
     const [pages, setPages] = useState(1)
     
     useEffect(() => {
-        setPages(Math.ceil(data.count/page.offset))
-    }, [data])
+        setPages(Math.ceil(filmsInfo.count/page.offset))
+        console.log(filmsInfo)
+    }, [filmsInfo])
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -34,13 +35,13 @@ const FilmsGrid: FC<FilmGridProps> = ({data, isLoading, isFetching}) => {
                 <LoadSpinner />
             ) : (
                 <div className={s.content}>
-                    {!data.films.length ? 
+                    {!filmsInfo.films.length ? 
                     <Title className={s.subtitle} variant="h2">
                         Ничего не найдено!
                     </Title> 
                     : 
                     <div className={s.gridWrapper}>
-                        <Grid data={data} />
+                        <Grid films={filmsInfo.films} />
                         <Pagination page={page.page} setPage={setPage} pages={pages} />
                     </div>
                     }

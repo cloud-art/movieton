@@ -1,18 +1,28 @@
 import React from "react";
-import { IFilmsInfo } from "../../../../types/IFilm";
+import { IFilm, IFilmsInfo } from "../../../../types/IFilm";
 import s from './Grid.module.scss'
 import FilmCard from "../../../UI/FilmCard/FilmCard";
-import IFilmCard from "../../../../types/IFilmCard";
 
 interface GridProps {
-    data: IFilmsInfo;
+    films: Array<IFilm>;
 }
 
-const Grid: React.FC<GridProps> = ({ data }) => {
+const Grid: React.FC<GridProps> = ({ films }) => {
+
     return (
         <div className={s.grid}>
-            {data.films.map((el) => (
-                <FilmCard key={el.id} data={{id: el.id? el.id : 1, title: el.title, img: process.env.REACT_APP_API_URL + el.img}}
+            {films.map((el) => (
+                <FilmCard key={el.id} film={
+                    { 
+                        id: el.id,
+                        title: el.title,
+                        rating: el.rating,
+                        genre: el.genres[0],
+                        duration: el.duration + ' мин.',
+                        year: new Date(el.date).getFullYear(),
+                        img: process.env.REACT_APP_API_URL + el.img
+                    }
+                }
                 classname={s.card}/>
             ))}
         </div>

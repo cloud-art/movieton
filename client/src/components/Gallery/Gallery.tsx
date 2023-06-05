@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import s from './Gallery.module.scss'
 import Slider from 'react-slick'
-import IFilmCard from '../../types/IFilmCard';
+import IFilmCard from '../../types/IFilm';
 import FilmCard from '../UI/FilmCard/FilmCard';
 import Button from '../UI/Button/Button';
 import classNames from 'classnames';
@@ -10,10 +10,10 @@ import 'slick-carousel/slick/slick.scss'
 import 'slick-carousel/slick/slick-theme.scss'
 
 type GalleryProps = {
-    data: Array<IFilmCard>;
+    films: Array<IFilmCard>;
 }
 
-export const Gallery:React.FC<GalleryProps> = ({data}) => {
+export const Gallery:React.FC<GalleryProps> = ({films}) => {
     const settings = {
         arrows: false,
         rows: 1,
@@ -72,11 +72,11 @@ export const Gallery:React.FC<GalleryProps> = ({data}) => {
         <div className={s.viewport}>
             <Button className={classNames(s.button, s.buttonPrev)} onClick={() => sliderRef?.current?.slickPrev()}><FiChevronLeft/></Button>
                 <Slider ref={sliderRef} className={s.gallerySlider} {...settings}>
-                    {data.map((e) => {
+                    {films.map((e) => {
                         return(
                             <div key={e.id} className={s.galleryItem}>
                                 <FilmCard
-                                    data={e}
+                                    film={e}
                                 />
                             </div>   
                         )
