@@ -9,7 +9,7 @@ export const createFilm = async (film: IFilm) => {
 }
 
 export const fetchFilms = async (page, filters: IFilters) => {
-    const {data} = await $host.get(`api/film/getAll?$ratingUpper=${filters.ratingUpper}&ratingLower=${filters.ratingLower}&year=${filters.year}&genre=${filters.genre}&sortType=${filters.sortType}&page=${page}&limit=${process.env.REACT_APP_FILMS_OFFSET || 12}`)
+    const {data} = await $host.get(`api/film/getAll?ratingLower=${filters.ratingLower}&ratingUpper=${filters.ratingUpper}&year=${filters.year}&genre=${filters.genre}&sortType=${filters.sortType}&page=${page}&limit=${process.env.REACT_APP_FILMS_OFFSET || 12}`)
     return data
 }
 
