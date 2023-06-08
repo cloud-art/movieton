@@ -1,4 +1,5 @@
 import { IGenre } from "./IGenre";
+import IPerson from "./IPerson";
 
 export interface IFilm {
     id: number;
@@ -8,9 +9,10 @@ export interface IFilm {
     rating: number;
     duration: number;
     date: Date;
-    age_limit: number;
+    ageLimit: number;
     img: string;
     genres: Array<IGenre>;
+    actors?: Array<IPerson>;
 }
 
 export interface IFilmsInfo{

@@ -6,11 +6,22 @@ import s from './ButtonDefault.module.scss';
 
 interface ButtonDefaultProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: 'regular';
+    startIcon?: React.ReactNode,
 }
 
-const ButtonDefault: React.FunctionComponent<PropsWithChildren<ButtonDefaultProps>> = ({ children, variant, className, ...props }) => {
+const ButtonDefault: React.FunctionComponent<PropsWithChildren<ButtonDefaultProps>> = ({ 
+    children, 
+    variant, 
+    className, 
+    startIcon = null,
+    ...props 
+}) => {
     return (
-        <Button className={classNames(s.button, variant === 'regular' && s.regular, className)} {...props}>
+        <Button 
+            className={classNames(s.button, variant === 'regular' && s.regular, className)} 
+            startIcon={startIcon}
+            {...props}
+        >
             {children}
         </Button>
     );
