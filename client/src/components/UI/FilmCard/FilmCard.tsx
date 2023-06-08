@@ -3,6 +3,8 @@ import s from './FilmCard.module.scss'
 import classNames from 'classnames'
 import PropertiesRow from './components/PropertiesRow'
 import IFilmCard from '../../../types/IFilm'
+import { Link } from 'react-router-dom'
+import { FILM_ROUTE } from '../../../utils/consts'
 
 type filmCardProps = {
     film: IFilmCard;
@@ -11,7 +13,7 @@ type filmCardProps = {
 
 const FilmCard:React.FC<filmCardProps> = ({film, classname}) => {
   return (
-    <div className={classNames(s.card, classname)}>
+    <Link className={classNames(s.card, classname)} to={FILM_ROUTE + `/${film.id}`}>
         <div className={s.imageSection}>
             <div className={s.imgWrapper}>
                 <img className={s.img} src={film.img} />
@@ -29,7 +31,7 @@ const FilmCard:React.FC<filmCardProps> = ({film, classname}) => {
         <div className={s.textSection}>
             <span className={s.title}>{film.title}</span>
         </div>
-    </div>
+    </Link>
   )
 }
 

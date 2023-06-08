@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import s from './FiltersForm.module.scss'
 import { useActions } from '../../hooks/useActions'
 import { Controller, useForm } from 'react-hook-form'
@@ -15,7 +15,7 @@ interface FiltersFormProps{
 
 const FiltersForm:React.FunctionComponent<FiltersFormProps> = () => {
     const { toggleFilters } = useActions()
-    const {setPage, setFilterGenre, setFilterRating, setFilterRatingLower, setFilterRatingUpper, setFiterYear, setSortType} = useActions()
+    const {setPage, setFilterGenre, setFilterRating, setFilterRatingLower, setFilterRatingUpper, setFiterYear, setSortType, resetFilters} = useActions()
 
     const { handleSubmit, control, getValues, reset } = useForm({
         defaultValues: {
@@ -30,9 +30,9 @@ const FiltersForm:React.FunctionComponent<FiltersFormProps> = () => {
         const { sort, rating, year, genres } = data;
 
 		const ratingString = `${rating[0]}-${rating[1]}`;
-		const yearString = `${year[0]}-${year[1]}`;
+		// const yearString = `${year[0]}-${year[1]}`;
 		const ratings = rating[0] !== rating[1] ? ratingString : rating[0];
-		const years = year[0] !== year[1] ? yearString : year[0];
+		// const years = year[0] !== year[1] ? yearString : year[0];
 		const genre = genres.value !== '' ? `search[]=${genres.value}&field[]=genres.name` : '';
 
 		setPage(1);
@@ -43,6 +43,15 @@ const FiltersForm:React.FunctionComponent<FiltersFormProps> = () => {
 		setFilterGenre(genres.value);
         console.log('submit')
     })
+
+    const handleReset = () => {
+        resetFilters()
+        reset()
+    }
+
+    useEffect(() => {
+        handleReset()
+    }, [])
 
     return (
         <form 
@@ -116,7 +125,7 @@ const FiltersForm:React.FunctionComponent<FiltersFormProps> = () => {
             </div>
             <div className={s.bottom}>
                 <ButtonDefault className={s.button}>Применить</ButtonDefault>
-                <ButtonDefault className={s.button}>Сбросить</ButtonDefault>
+                <ButtonDefault className={s.button} onClick={handleReset}>Сбросить</ButtonDefault>
             </div>
         </form>
     )

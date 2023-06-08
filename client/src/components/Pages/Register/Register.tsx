@@ -37,7 +37,7 @@ function Register() {
             setErrorMessage('')
             // переадрессация
             navigate(HOMEPAGE_ROUTE)
-        }catch(e){
+        }catch(e: any){
             setErrorMessage(e.response.data.message)
         }
         // переадрессация
