@@ -1,5 +1,6 @@
 import express from 'express'
 import models from '../models'
+import { Model, where } from 'sequelize'
 
 class ReviewController {
     async create(req: express.Request, res: express.Response){
@@ -10,6 +11,26 @@ class ReviewController {
 
     async getAll(req: express.Request, res: express.Response){
         const reviews = await models.Review.findAll()
+        return res.json(reviews)
+    }
+
+    async getAllMovie(req: express.Request, res: express.Response){
+        const {id: filmId, limit: reviewsLimit} = req.params
+        let reviews: {
+            rows: Model<any, any>[];
+            count: number;
+        }
+        if (reviewsLimit){
+            reviews = await models.Review.findAndCountAll({
+                where: {filmId},
+                limit: parseInt(String(reviewsLimit))
+            })
+        } else{
+            reviews = await models.Review.findAndCountAll({
+                where: {filmId},
+            })
+        }
+        
         return res.json(reviews)
     }
 
