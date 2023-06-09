@@ -6,6 +6,7 @@ import { Title } from '../../../../UI/Title/Title';
 import ButtonDefault from '../../../../UI/ButtonDefault/ButtonDefault';
 import Item from './Components/Item/Item';
 import Button from '../../../../UI/Button/Button';
+import LoadMoreButton from '../../../../UI/LoadMoreButton/LoadMoreButton';
 
 type ReviewsProps = {
     movieId: number;
@@ -27,10 +28,8 @@ const Reviews:React.FC<ReviewsProps> = ({movieId}) => {
     const handleLoadMore = () => {
         limit.current += limitStep
         fetchComments(movieId, limit.current).then(comments => {
-            console.log(limit)
             setComments(comments.rows)
         })
-        console.log(limit)
     }
 
     const Content = () => {
@@ -40,12 +39,9 @@ const Reviews:React.FC<ReviewsProps> = ({movieId}) => {
                 return <Item key={comment.id} comment={comment} />;
             })}
             {limit.current <= count &&
-                <Button
-                    className={s.loadMore}
-                    onClick={handleLoadMore}
-                >
+                <LoadMoreButton handleClick={handleLoadMore}>
                     Загрузить ещё
-                </Button>
+                </LoadMoreButton>
             }
         </>
         )

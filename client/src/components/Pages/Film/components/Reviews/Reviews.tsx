@@ -5,6 +5,9 @@ import { IReview } from '../../../../../types/IFilm';
 import { Title } from '../../../../UI/Title/Title';
 import ButtonDefault from '../../../../UI/ButtonDefault/ButtonDefault';
 import Item from './components/Item';
+import { useNavigate } from 'react-router-dom';
+import { REVIEWS_ROUTE } from '../../../../../utils/consts';
+import ReviewsList from '../../../../ReviewsList/ReviewsList';
 
 type ReviewsProps = {
     movieId: number;
@@ -14,6 +17,7 @@ const Reviews:React.FC<ReviewsProps> = ({movieId}) => {
     const [reviews, setReviews] = useState<Array<IReview>>()
     const [count, setCount] = useState<number>(0)
     const [limit, setLimit] = useState<number>(3)
+    const navigate = useNavigate()
 
     useEffect(() => {
         fetchReviews(movieId, limit).then(reviews => {
@@ -22,23 +26,10 @@ const Reviews:React.FC<ReviewsProps> = ({movieId}) => {
         })
     }, [])
 
-    const Content = () => {
-        return(
-        <>
-            {reviews?.map((review) => {
-                return <Item key={review.id} review={review} />;
-            })}
-            {limit <= count &&
-                <ButtonDefault
-                    className={s.loadMore}
-                    // onClick={handleLoadReviews}
-                >
-                    Смотреть все
-                </ButtonDefault>
-            }
-        </>
-        )
+    const handleNavigateReviews = () => {
+        navigate(REVIEWS_ROUTE + `/${movieId}`)
     }
+
 
     return (
         <>
@@ -48,8 +39,15 @@ const Reviews:React.FC<ReviewsProps> = ({movieId}) => {
 						Рецензии пользователей
 					</Title>
 					<div className={s.content}>
-                        <Content />
-						{/* <ReviewsInfo limit={limit} /> */}
+                        <ReviewsList reviews={reviews}/>
+                        {limit <= count &&
+                            <ButtonDefault
+                                className={s.loadMore}
+                                onClick={handleNavigateReviews}
+                            >
+                                Смотреть все
+                            </ButtonDefault>
+                        }
 					</div>
 				</div>
             ): null}
