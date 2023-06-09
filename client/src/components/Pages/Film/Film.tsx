@@ -3,15 +3,14 @@ import { useParams } from 'react-router-dom'
 import { fetchOneFilm } from '../../../http/filmApi'
 import s from './Film.module.scss'
 import classNames from 'classnames'
-import Button from '../../UI/Button/Button'
 import { Title } from '../../UI/Title/Title'
 import { IFilm } from '../../../types/IFilm'
 import ButtonDefault from '../../UI/ButtonDefault/ButtonDefault'
 import { FiBookmark, FiPlay } from 'react-icons/fi'
 import Info from './components/Info/Info'
 import Tabs from './components/Tabs/FilmTabs'
-import { Link } from 'react-router-dom'
 import Reviews from './components/Reviews/Reviews'
+import Comments from './components/Comments/Comments'
 
 type FilmProps = {}
 
@@ -69,6 +68,7 @@ const Film:React.FC<FilmProps> = () => {
 				{/* {similarMovies?.length ? <SimilarMovies movies={similarMovies} /> : null}
 				<Reviews /> */}
 				<Reviews movieId={film.id}/>
+				<Comments movieId={film.id}/>
 			</div>
 		</section>
         )

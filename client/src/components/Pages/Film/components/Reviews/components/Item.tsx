@@ -18,8 +18,7 @@ const Item:React.FC<ItemProps> = ({
             </div>
         </div>
         <div className={s.content}>
-            <span className={s.positive}>{review.positive}</span>
-            <span className={s.negative}>{review.negative}</span>
+            <span className={s.text}>{review.positive}</span>
         </div>
     </div>
   )

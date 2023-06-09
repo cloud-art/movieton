@@ -22,16 +22,6 @@ const Reviews:React.FC<ReviewsProps> = ({movieId}) => {
         })
     }, [])
 
-    const handleLoadReviews = () => {
-        if (count <= limit){
-            setLimit(limit => limit + 3)
-            fetchReviews(movieId, limit).then(reviews => {
-                setReviews(reviews.rows)
-                setCount(reviews.count)
-            })
-        }
-    }
-
     const Content = () => {
         return(
         <>
@@ -41,9 +31,9 @@ const Reviews:React.FC<ReviewsProps> = ({movieId}) => {
             {limit <= count &&
                 <ButtonDefault
                     className={s.loadMore}
-                    onClick={handleLoadReviews}
+                    // onClick={handleLoadReviews}
                 >
-                    Показать еще
+                    Смотреть все
                 </ButtonDefault>
             }
         </>

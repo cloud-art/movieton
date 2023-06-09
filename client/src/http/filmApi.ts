@@ -2,6 +2,7 @@ import { $authHost, $host } from ".";
 import jwt_decode from "jwt-decode"
 import {IFilm} from "../types/IFilm";
 import { IFilters } from "../types/IFilters";
+import { AxiosResponse } from "axios";
 
 export const createFilm = async (film: IFilm) => {
     const {data} = await $authHost.post('api/film/create', film)
@@ -18,9 +19,26 @@ export const fetchOneFilm = async (id: number) => {
     return film
 }
 
-export const fetchReviews = async (movieId: number, limit: number) => {
-    const {data: reviews} = await $host.get(`api/review/getAll/${movieId}/${limit}`) 
-    return reviews
+export const fetchReviews = async (movieId: number, limit?: number) => {
+    if(limit){
+        const {data: reviews} = await $host.get(`api/review/getAll/${movieId}/${limit}`) 
+        return reviews
+
+    }else{
+        const {data: reviews} = await $host.get(`api/review/getAll/${movieId}`) 
+        return reviews
+    }
+}
+
+export const fetchComments = async (movieId: number, limit?: number) => {
+    if(limit){
+        const {data: comments} = await $host.get(`api/comment/getAll/${movieId}/${limit}`) 
+        return comments
+
+    }else{
+        const {data: comments} = await $host.get(`api/comments/getAll/${movieId}`) 
+        return comments
+    }
 }
 
 // export const check = async () => {

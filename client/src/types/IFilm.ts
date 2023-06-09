@@ -42,3 +42,12 @@ export interface IReview{
     createdAt?: string;
     updatedAt?: string;
 }
+
+export interface IComment{
+    id: number;
+    text: string;
+    filmId: number;
+    userId: number;
+    createdAt: string;
+    updatedAt?: string;
+}
