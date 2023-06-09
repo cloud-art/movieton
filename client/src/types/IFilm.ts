@@ -31,3 +31,23 @@ export default interface IFilmCard {
     genre: IGenre;
     duration: string;
 }
+
+export interface IReview{
+    id: number;
+    title: string;
+    positive: string;
+    negative: string;
+    filmId: number;
+    userId: number;
+    createdAt?: string;
+    updatedAt?: string;
+}
+
+export interface IComment{
+    id: number;
+    text: string;
+    filmId: number;
+    userId: number;
+    createdAt: string;
+    updatedAt?: string;
+}
