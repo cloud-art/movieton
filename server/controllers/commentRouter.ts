@@ -1,5 +1,6 @@
 import express from 'express'
 import models from '../models'
+import Model from 'sequelize/types/model'
 
 class CommentsController {
     async create(req: express.Request, res: express.Response){
@@ -21,6 +22,27 @@ class CommentsController {
             }
         )
         return res.json(comment)
+    }
+
+    async getAllMovie(req: express.Request, res: express.Response){
+        const {id: filmId, limit: commentLimit} = req.params
+        let comments: {
+            rows: Model<any, any>[];
+            count: number;
+        }
+        if (commentLimit){
+            comments = await models.Comment.findAndCountAll({
+                where: {filmId},
+                limit: parseInt(String(commentLimit)),
+                order: [['createdAt', 'DESC']]
+            })
+        } else{
+            comments = await models.Comment.findAndCountAll({
+                where: {filmId},
+                order: [['createdAt', 'DESC']]
+            })
+        }
+        return res.json(comments)
     }
 }
 

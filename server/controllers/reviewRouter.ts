@@ -23,11 +23,13 @@ class ReviewController {
         if (reviewsLimit){
             reviews = await models.Review.findAndCountAll({
                 where: {filmId},
-                limit: parseInt(String(reviewsLimit))
+                limit: parseInt(String(reviewsLimit)),
+                order: [['createdAt', 'DESC']]
             })
         } else{
             reviews = await models.Review.findAndCountAll({
                 where: {filmId},
+                order: [['createdAt', 'DESC']]
             })
         }
         
