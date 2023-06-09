@@ -9,12 +9,18 @@ export const createFilm = async (film: IFilm) => {
 }
 
 export const fetchFilms = async (page: number, filters: IFilters) => {
-    const {data} = await $host.get(`api/film/getAll?ratingLower=${filters.ratingLower}&ratingUpper=${filters.ratingUpper}&year=${filters.year}&genre=${filters.genre}&sortType=${filters.sortType}&page=${page}&limit=${process.env.REACT_APP_FILMS_OFFSET || 12}`)
-    return data
+    const {data: films} = await $host.get(`api/film/getAll?ratingLower=${filters.ratingLower}&ratingUpper=${filters.ratingUpper}&year=${filters.year}&genre=${filters.genre}&sortType=${filters.sortType}&page=${page}&limit=${process.env.REACT_APP_FILMS_OFFSET || 12}`)
+    return films
 }
+
 export const fetchOneFilm = async (id: number) => {
-    const {data} = await $host.get(`api/film/getOne/${id}`)
-    return data
+    const {data: film} = await $host.get(`api/film/getOne/${id}`)
+    return film
+}
+
+export const fetchReviews = async (movieId: number, limit: number) => {
+    const {data: reviews} = await $host.get(`api/review/getAll/${movieId}/${limit}`) 
+    return reviews
 }
 
 // export const check = async () => {

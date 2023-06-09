@@ -10,6 +10,8 @@ import ButtonDefault from '../../UI/ButtonDefault/ButtonDefault'
 import { FiBookmark, FiPlay } from 'react-icons/fi'
 import Info from './components/Info/Info'
 import Tabs from './components/Tabs/FilmTabs'
+import { Link } from 'react-router-dom'
+import Reviews from './components/Reviews/Reviews'
 
 type FilmProps = {}
 
@@ -27,9 +29,6 @@ const Film:React.FC<FilmProps> = () => {
         film ? ( 
         <section className={s.section}>
 			<div className={classNames('container wrapper', s.container)}>
-				<div className={s.top}>
-					Назад
-				</div>
 				<div className={s.content}>
 					<div className={s.left}>
 						<img className={s.image} src={process.env.REACT_APP_API_URL + film.img} alt={film.short_desc} />
@@ -69,6 +68,7 @@ const Film:React.FC<FilmProps> = () => {
 				<Tabs film={film} />
 				{/* {similarMovies?.length ? <SimilarMovies movies={similarMovies} /> : null}
 				<Reviews /> */}
+				<Reviews movieId={film.id}/>
 			</div>
 		</section>
         )
