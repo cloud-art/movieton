@@ -31,7 +31,7 @@ const Film:React.FC<FilmProps> = () => {
 				<div className={s.content}>
 					<div className={s.left}>
 						<img className={s.image} src={process.env.REACT_APP_API_URL + film.img} alt={film.short_desc} />
-                        Рейтинг
+                        <span className={s.rating}>{film.rating}</span>
 						{/* <MovieRating className={s.rating} rating={film.rating} /> */}
 					</div>
 					<div className={s.right}>
