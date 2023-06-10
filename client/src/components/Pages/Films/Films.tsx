@@ -21,14 +21,12 @@ const Films: React.FunctionComponent<FilmsProps> = () => {
     }, [])
 
     useEffect(() => {
-        console.log(filmsInfo)
         fetchFilms(page.page, filters).then(data => {
             setFilms(data)
         })
     }, [page])
 
     useEffect(() => {
-        console.log(filters)
         fetchFilms(page.page, filters).then(data => {
             setFilms(data)
         })
@@ -40,7 +38,7 @@ const Films: React.FunctionComponent<FilmsProps> = () => {
                 <div className={s.container}>
                     <FiltersForm />
                     <div className={s.content}>
-                        <FilmsGrid filmsInfo={filmsInfo} isLoading={filmsInfo.isLoading} isFetching={filmsInfo.isFetching}/>
+                        <FilmsGrid filmsInfo={filmsInfo} isLoading={filmsInfo.isLoading || false} isFetching={filmsInfo.isFetching || false}/>
                     </div>
                 </div>
             </div>

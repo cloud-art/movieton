@@ -13,6 +13,11 @@ import Reviews from '../../components/Pages/Reviews/Reviews';
 
 export const authRoutes: Array<IRouter> = [];
 export const publicRoutes: Array<IRouter> = [
+    //then move to auth
+    {
+        path: FAVOURITE_ROUTE + '/:id',
+        Component: Favourite,
+    },
     {
         path: HOMEPAGE_ROUTE,
         Component: Homepage

@@ -16,8 +16,8 @@ export interface IFilm {
 }
 
 export interface IFilmsInfo{
-    isFetching: boolean;
-    isLoading: boolean;
+    isFetching?: boolean;
+    isLoading?: boolean;
     count: number;
     films: Array<IFilm>;
 }

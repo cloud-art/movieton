@@ -22,7 +22,6 @@ const FilmsGrid: FC<FilmGridProps> = ({filmsInfo, isLoading, isFetching}) => {
     
     useEffect(() => {
         setPages(Math.ceil(filmsInfo.count/page.offset))
-        console.log(filmsInfo)
     }, [filmsInfo])
 
     useEffect(() => {

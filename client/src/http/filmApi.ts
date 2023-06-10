@@ -41,6 +41,16 @@ export const fetchComments = async (movieId: number, limit?: number) => {
     }
 }
 
+export const fetchFavourite = async (userId: number, page?:number, limit?: number) => {
+    if(limit){
+        const {data: favourites} = await $host.get(`api/favourites/getAll/${userId}/&page=${page}&limit=${limit}`)
+        return favourites
+    }else{
+        const {data: favourite} = await $host.get(`api/favourites/getAll/${userId}`)
+        return favourite
+    }
+}
+
 // export const check = async () => {
 //     const {data} = await $authHost.get('api/user/auth')
 //     localStorage.setItem('token', data.token)
