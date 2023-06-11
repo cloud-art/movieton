@@ -43,7 +43,7 @@ export const fetchComments = async (movieId: number, limit?: number) => {
 
 export const fetchFavourite = async (userId: number, page?:number, limit?: number) => {
     if(limit){
-        const {data: favourites} = await $host.get(`api/favourites/getAll/${userId}/&page=${page}&limit=${limit}`)
+        const {data: favourites} = await $host.get(`api/favourites/getAll/${userId}?limit=${limit}&page=${page}`)
         return favourites
     }else{
         const {data: favourite} = await $host.get(`api/favourites/getAll/${userId}`)

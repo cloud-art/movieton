@@ -1,30 +1,34 @@
 import React from 'react'
-import { IFilm } from '../../types/IFilm'
+import { IFilmsInfo } from '../../types/IFilm'
 import ListItem from './components/ListItem/ListItem';
 import classNames from 'classnames';
 import s from './FilmList.module.scss'
+import { Title } from '../UI/Title/Title';
 
 type FilmListProps = {
-    films: Array<IFilm>;
+    filmsInfo: IFilmsInfo;
     classname?: string;
 }
 
 const FilmList:React.FC<FilmListProps> = ({
-    films,
+    filmsInfo,
     classname,
 }) => {
 
     return (
         <>
+        {filmsInfo.films.length ? 
             <ul className={classNames(s.list, classname)}>
-                {films.map(film => {
+                {filmsInfo.films.map(film => {
                     return(
                         <ListItem film={{...film, img: process.env.REACT_APP_API_URL + film.img}}/>
                     )
                 })}
-            </ul>
+            </ul>  
+        : <Title>Список пуст</Title>
+        }
         </>
-        
+             
     )
 }
 

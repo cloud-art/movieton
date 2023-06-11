@@ -5,6 +5,7 @@ import s from './Films.module.scss';
 import { useActions } from '../../../hooks/useActions';
 import { fetchFilms } from '../../../http/filmApi';
 import FilmsGrid from '../../FilmsGrid/FilmsGrid';
+import Gallery from '../../Gallery/Gallery';
 
 interface FilmsProps {}
 
@@ -38,7 +39,9 @@ const Films: React.FunctionComponent<FilmsProps> = () => {
                 <div className={s.container}>
                     <FiltersForm />
                     <div className={s.content}>
-                        <FilmsGrid filmsInfo={filmsInfo} isLoading={filmsInfo.isLoading || false} isFetching={filmsInfo.isFetching || false}/>
+                        <Gallery filmsInfo={filmsInfo}>
+                            <FilmsGrid films={filmsInfo.films}/>
+                        </Gallery>
                     </div>
                 </div>
             </div>

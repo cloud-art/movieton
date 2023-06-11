@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React from 'react'
-import Button from '../../../UI/Button/Button';
+import Button from '../UI/Button/Button';
 import s from './Pagination.module.scss'
 import { FiChevronLeft, FiChevronRight, FiChevronsLeft, FiChevronsRight } from 'react-icons/fi';
 

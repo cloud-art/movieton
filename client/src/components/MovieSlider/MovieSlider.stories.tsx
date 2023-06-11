@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import {Gallery} from './Gallery';
+import { MovieSlider } from './MovieSlider';
 
 export default {
-	title: 'Gallery',
-	component: Gallery,
-} as ComponentMeta<typeof Gallery>;
+	title: 'MovieSlider',
+	component: MovieSlider,
+} as ComponentMeta<typeof MovieSlider>;
 
-const Template: ComponentStory<typeof Gallery> = () => {
+const Template: ComponentStory<typeof MovieSlider> = () => {
     const films = [
         {
             id: 1,
@@ -76,7 +76,7 @@ const Template: ComponentStory<typeof Gallery> = () => {
 
     return (
         <div style={{width: `1260px`}}>
-            <Gallery
+            <MovieSlider
                 films={films}
             />
         </div>

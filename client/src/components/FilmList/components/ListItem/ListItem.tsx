@@ -30,7 +30,6 @@ const ListItem:React.FC<ListItemProps> = ({
             </div>
             <div className={s.bottom}>
                 <span>{film.short_desc}</span>
-
             </div> 
         </div>
     </li>

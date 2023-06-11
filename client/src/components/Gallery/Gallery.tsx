@@ -1,89 +1,36 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import s from './Gallery.module.scss'
-import Slider from 'react-slick'
-import IFilmCard from '../../types/IFilm';
-import FilmCard from '../UI/FilmCard/FilmCard';
-import Button from '../UI/Button/Button';
-import classNames from 'classnames';
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import 'slick-carousel/slick/slick.scss'
-import 'slick-carousel/slick/slick-theme.scss'
+import { IFilmsInfo } from '../../types/IFilm'
+import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { useActions } from '../../hooks/useActions';
+import Pagination from '../Pagination/Pagination';
+import { IPage } from '../../types/IPage';
 
-type GalleryProps = {
-    films: Array<IFilmCard>;
+interface GalleryProps {
+    filmsInfo: IFilmsInfo
 }
 
-export const Gallery:React.FC<GalleryProps> = ({films}) => {
-    const settings = {
-        arrows: false,
-        rows: 1,
-        slidesToShow: 6,
-        speed: 500,
-        infinite: false,
-        slidesToScroll: 6,
-        responsive: [
-            {
-                breakpoint: 1096,
-                settings: {
-                    slidesToShow: 5,
-                    slidesToScroll: 5,
-                }
-            },
-            {
-                breakpoint: 920,
-                settings: {
-                    slidesToShow: 4,
-                    slidesToScroll: 4,
-                }
-            },
-            {
-                breakpoint: 744,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                }
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 4,
-                    slidesToScroll: 4,
-                }
-            },
-            {
-                breakpoint: 512,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                }
-            },
-            {
-                breakpoint: 392,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                }
-            }
-        ]
-    };
-    const sliderRef = useRef<Slider>(null)
-  return (
-    <div className={s.gallery}>
-        <div className={s.viewport}>
-            <Button className={classNames(s.button, s.buttonPrev)} onClick={() => sliderRef?.current?.slickPrev()}><FiChevronLeft/></Button>
-                <Slider ref={sliderRef} className={s.gallerySlider} {...settings}>
-                    {films.map((e) => {
-                        return(
-                            <div key={e.id} className={s.galleryItem}>
-                                <FilmCard
-                                    film={e}
-                                />
-                            </div>   
-                        )
-                    })}
-                </Slider>    
-            <Button className={classNames(s.button, s.buttonNext)} onClick={() => sliderRef?.current?.slickNext()}><FiChevronRight/></Button>
+const Gallery: React.FC<React.PropsWithChildren<GalleryProps>> = ({filmsInfo, children}) => {
+    const page:IPage = useTypedSelector((state) => state.paginationReducer);
+    const { setPage } = useActions();
+    const [pages, setPages] = useState(1)
+    
+    useEffect(() => {
+        setPages(Math.ceil(filmsInfo.count/page.offset))
+    }, [filmsInfo])
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [page]);
+
+    return (
+        <div className={s.content}>
+            <div className={s.gallery}>
+                {children}
+                <Pagination page={page.page} setPage={setPage} pages={pages} />
+            </div>
         </div>
-    </div>
-  )
+    );
 }
+
+export default Gallery

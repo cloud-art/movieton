@@ -1,11 +1,9 @@
 import classNames from 'classnames'
 import React from 'react'
 import s from "./FilmsList.module.scss"
-import { useState } from 'react'
 import ButtonDefault from '../../../../UI/ButtonDefault/ButtonDefault'
 import { Title } from '../../../../UI/Title/Title'
-import { Gallery } from '../../../../Gallery/Gallery'
-import IFilmCard from '../../../../../types/IFilm'
+import { MovieSlider } from '../../../../MovieSlider/MovieSlider'
 
 interface FilmListProps {
     title: String
@@ -88,7 +86,7 @@ const FilmsList: React.FC<FilmListProps> = ({title}) => {
                 <ButtonDefault>Смотреть все</ButtonDefault>
             </div>
             <div className={s.content}>
-                <Gallery films={films}></Gallery>
+                <MovieSlider films={films}></MovieSlider>
             </div>
         </div>
     )

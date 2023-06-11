@@ -1,53 +1,32 @@
-import React, { FC, useEffect, useState } from 'react'
+import React from "react";
+import { IFilm, IFilmsInfo } from "../../types/IFilm";
 import s from './FilmsGrid.module.scss'
-import { IFilmsInfo } from '../../types/IFilm'
-import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { useActions } from '../../hooks/useActions';
-import Grid from './components/Grid/Grid';
-import Pagination from './components/Pagination/Pagination';
-import { Title } from '../UI/Title/Title';
-import LoadSpinner from '../UI/LoadSpinner/LoadSpinner';
-import { IPage } from '../../types/IPage';
+import FilmCard from "../UI/FilmCard/FilmCard";
 
-interface FilmGridProps {
-    filmsInfo: IFilmsInfo;
-    isLoading: boolean;
-    isFetching: boolean;
+interface GridProps {
+    films: Array<IFilm>;
 }
 
-const FilmsGrid: FC<FilmGridProps> = ({filmsInfo, isLoading, isFetching}) => {
-    const page:IPage = useTypedSelector((state) => state.paginationReducer);
-    const { setPage } = useActions();
-    const [pages, setPages] = useState(1)
-    
-    useEffect(() => {
-        setPages(Math.ceil(filmsInfo.count/page.offset))
-    }, [filmsInfo])
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [page]);
+const Grid: React.FC<GridProps> = ({ films }) => {
 
     return (
-        <>
-            {isLoading || isFetching ? (
-                <LoadSpinner />
-            ) : (
-                <div className={s.content}>
-                    {!filmsInfo.films.length ? 
-                    <Title className={s.subtitle} variant="h2">
-                        Ничего не найдено!
-                    </Title> 
-                    : 
-                    <div className={s.gridWrapper}>
-                        <Grid films={filmsInfo.films} />
-                        <Pagination page={page.page} setPage={setPage} pages={pages} />
-                    </div>
+        <div className={s.grid}>
+            {films.map((el) => (
+                <FilmCard key={el.id} film={
+                    { 
+                        id: el.id,
+                        title: el.title,
+                        rating: el.rating,
+                        genre: el.genres[0],
+                        duration: el.duration + ' мин.',
+                        year: new Date(el.date).getFullYear(),
+                        img: process.env.REACT_APP_API_URL + el.img
                     }
-                </div>
-            )}
-        </>
+                }
+                classname={s.card}/>
+            ))}
+        </div>
     );
-}
+};
 
-export default FilmsGrid
+export default Grid
