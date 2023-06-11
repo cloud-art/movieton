@@ -4,7 +4,11 @@ import checkRoleMiddleware from "../middleware/checkRoleMiddleware";
 
 const personRouter = Router()
 
-personRouter.post('/create', checkRoleMiddleware("ADMIN"), PersonController.create)
+personRouter.post(
+        '/create', 
+        // checkRoleMiddleware("ADMIN"), 
+        PersonController.create
+    )
 personRouter.get('/getAll', PersonController.getAll)
 personRouter.get('/getOne/:id', PersonController.getOne)
 

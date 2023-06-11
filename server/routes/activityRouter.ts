@@ -4,7 +4,11 @@ import checkRoleMiddleware from "../middleware/checkRoleMiddleware";
 
 const activityRouter = Router()
 
-activityRouter.post('/create', checkRoleMiddleware("ADMIN"), ActivitiesController.create)
+activityRouter.post(
+        '/create', 
+        // checkRoleMiddleware("ADMIN"), 
+        ActivitiesController.create
+    )
 activityRouter.get('/getAll', ActivitiesController.getAll)
 activityRouter.get('/getOne/:id', ActivitiesController.getOne)
 

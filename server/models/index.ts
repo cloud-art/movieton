@@ -45,7 +45,7 @@ module models {
         //added
         id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     })
-    export const FavouriteFilms = sequelize.define('favourites', {
+    export const FavouriteFilms = sequelize.define('favourite_films', {
         id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     })
     
@@ -94,6 +94,9 @@ module models {
     Film.hasMany(Star)
     Star.belongsTo(Film)
     
+    // Film.belongsToMany(Favourites, {through: FavouriteFilms, as: 'filmsFavourite'})
+    // Favourites.belongsToMany(Film, {through: FavouriteFilms, as: 'favouriteFilms'})
+
     Film.hasMany(FavouriteFilms)
     FavouriteFilms.belongsTo(Film)
 
@@ -128,17 +131,18 @@ module models {
     User.hasMany(Comment)
     Comment.belongsTo(User)
     
-    User.hasMany(Star)
-    Star.belongsTo(User)
+    User.hasOne(Star)
+    Star.hasOne(User)
     
     User.hasOne(Favourites)
     Favourites.belongsTo(User)
-
-    User.hasMany(FavouriteFilms)
-    FavouriteFilms.belongsTo(User)
     
     Person.belongsToMany(Activity, {through: PersonActivity})
     Activity.belongsToMany(Person, {through: PersonActivity})    
+
+    //new relation
+    Favourites.hasMany(FavouriteFilms)
+    FavouriteFilms.belongsTo(Favourites)
 }
 
 export default models

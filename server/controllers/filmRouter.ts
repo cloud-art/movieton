@@ -123,9 +123,37 @@ class FilmController {
                 order: filmOrder,
                 distinct: true
             }
-        ) 
+        )
         return res.json(films)
     }
+
+    async getAllFavourites(req: express.Request, res: express.Response){
+        const { userId, page: pageQuery, limit: limitQuery } = req.query
+        const page = parseInt((String(pageQuery))) || 1
+        const limit = parseInt((String(limitQuery))) || 9
+        let offset = page * limit - limit
+
+        const films = await models.Film.findAndCountAll(
+            {
+                limit, 
+                offset,
+                include: [
+                    {
+                        model: models.FavouriteFilms,
+                        include: [{
+                            model: models.Favourites,
+                            where: {userId}
+                        }]
+                    }
+                ],
+                // order: filmOrder,
+                distinct: true
+            }
+        )
+        return res.json(films)
+    }
+
+
 
     async getOne(req: express.Request, res: express.Response){
         const {id} = req.params
