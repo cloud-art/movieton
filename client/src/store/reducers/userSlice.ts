@@ -10,8 +10,7 @@ const initialState: { isAuth: boolean, user: IUser} = {
         password: '',
         name: '',
         surname: '',
-        role: 'GUEST',
-        isAuth: false,
+        role: 'GUEST'
     }
 };
 
@@ -20,8 +19,19 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         setUser: (state, action) => {
-            state.user = action.payload
-            state.isAuth = true
+            const newUser:IUser = {
+                id: action.payload.id,
+                username: action.payload.username,
+                email: action.payload.email,
+                password: 'action.payload.password',
+                name: action.payload.name,
+                surname: action.payload.surname,
+                role: action.payload.role
+            } 
+            return{
+                ...state,
+                user: {...newUser}
+            }
         },
         setAuth: (state, action) => {
             if (action.payload === false){

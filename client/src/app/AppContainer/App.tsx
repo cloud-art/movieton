@@ -8,11 +8,12 @@ import LoadSpinner from '../../components/UI/LoadSpinner/LoadSpinner';
 import s from './App.module.scss'
 
 function App() {
-    const { setAuth } = useActions()
+    const { setAuth, setUser } = useActions()
     const [loading, setLoading] = useState(true)
 
     useEffect(()=>{
         check().then(data=>{
+            setUser(data)
             setAuth(true)
         }).finally(() => {setLoading(false)})
     }, [])

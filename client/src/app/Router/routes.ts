@@ -11,13 +11,13 @@ import Register from '../../components/Pages/Register/Register';
 import Film from '../../components/Pages/Film/Film';
 import Reviews from '../../components/Pages/Reviews/Reviews';
 
-export const authRoutes: Array<IRouter> = [];
-export const publicRoutes: Array<IRouter> = [
-    //then move to auth
+export const authRoutes: Array<IRouter> = [
     {
-        path: FAVOURITE_ROUTE + '/:id',
+        path: FAVOURITE_ROUTE,
         Component: Favourite,
     },
+];
+export const publicRoutes: Array<IRouter> = [
     {
         path: HOMEPAGE_ROUTE,
         Component: Homepage
@@ -37,10 +37,6 @@ export const publicRoutes: Array<IRouter> = [
     {
         path: SERIES_ROUTE,
         Component: Series
-    },
-    {
-        path: FAVOURITE_ROUTE,
-        Component: Favourite
     },
     {
         path: LOGIN_ROUTE,

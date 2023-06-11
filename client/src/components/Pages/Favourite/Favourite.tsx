@@ -13,17 +13,20 @@ interface FavouriteProps {}
 
 const Favourite: React.FunctionComponent<FavouriteProps> = () => {
     const [favourites, setFavourites] = useState<IFilmsInfo>()
-    const {id: userId} = useParams()
+    const userId = useTypedSelector(state => state.userReducer.user.id)
+    const user = useTypedSelector(state => state.userReducer)
 
     useEffect(() => {
-        userId && fetchFavourite(parseInt(userId), page.page, page.offset).then(favourite => {
+        console.log(user)
+        userId && fetchFavourite(userId, page.page, page.offset).then(favourite => {
             setFavourites(
                 {
                     count: favourite.count,
                     films: favourite.rows.map((el: { film: any; }) => {return el.film})
-                }
+                } 
             )  
         })
+        
     }, [])
 
     //pagination
@@ -31,7 +34,7 @@ const Favourite: React.FunctionComponent<FavouriteProps> = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        userId && fetchFavourite(parseInt(userId), page.page, page.offset).then(favourite => {
+        userId && fetchFavourite(userId, page.page, page.offset).then(favourite => {
             setFavourites(
                 {
                     count: favourite.count,

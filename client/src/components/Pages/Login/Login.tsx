@@ -2,18 +2,17 @@ import React, { useState } from 'react';
 import AuthForm from '../../AuthForm/AuthForm';
 import InputText from '../../UI/InputText/InputText';
 import { Controller, useForm } from 'react-hook-form';
-import { Link, redirect, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import s from './Login.module.scss';
 import ButtonDefault from '../../UI/ButtonDefault/ButtonDefault';
 import { HOMEPAGE_ROUTE, REGISTER_ROUTE } from '../../../utils/consts';
 import { login } from '../../../http/userApi';
 import { FiAlertCircle } from 'react-icons/fi';
 import { useActions } from '../../../hooks/useActions';
-import { useTypedSelector } from '../../../hooks/useTypedSelector';
 
 function Login() {
     const [errorMessage, setErrorMessage] = useState<string>('')
-    const { setUser } = useActions()
+    const { setUser, setAuth } = useActions()
     const navigate = useNavigate()
 
     const {
@@ -32,6 +31,7 @@ function Login() {
         try{
             const user = await login(data.username, data.password)
             setUser(user)
+            setAuth(true)
             setErrorMessage('')
             // переадрессация
             navigate(HOMEPAGE_ROUTE) 

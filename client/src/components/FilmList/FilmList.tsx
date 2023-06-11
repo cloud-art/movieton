@@ -21,7 +21,7 @@ const FilmList:React.FC<FilmListProps> = ({
             <ul className={classNames(s.list, classname)}>
                 {filmsInfo.films.map(film => {
                     return(
-                        <ListItem film={{...film, img: process.env.REACT_APP_API_URL + film.img}}/>
+                        <ListItem key={film.id} film={{...film, img: process.env.REACT_APP_API_URL + film.img}}/>
                     )
                 })}
             </ul>  
