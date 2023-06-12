@@ -30,7 +30,7 @@ const Search: React.FunctionComponent<SearchProps> = () => {
         if (value != ''){
             setSearch(value);
             //Router redirect on search page
-            navigate(SEARCH_ROUTE)
+            navigate(SEARCH_ROUTE + `/${value}`)
         }
     };
 
