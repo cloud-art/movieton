@@ -14,6 +14,11 @@ export const fetchFilms = async (page: number, filters: IFilters) => {
     return films
 }
 
+export const fetchFilmsByName = async (page: number,  filters: IFilters, name: string, limit?: number) => {
+    const {data: films} = await $host.get(`api/film/getAll?ratingLower=${filters.ratingLower}&ratingUpper=${filters.ratingUpper}&year=${filters.year}&genre=${filters.genre}&sortType=${filters.sortType}&page=${page}&limit=${limit? limit : process.env.REACT_APP_FILMS_OFFSET || 12}&name=${name}`)
+    return films
+}
+
 export const fetchOneFilm = async (id: number) => {
     const {data: film} = await $host.get(`api/film/getOne/${id}`)
     return film

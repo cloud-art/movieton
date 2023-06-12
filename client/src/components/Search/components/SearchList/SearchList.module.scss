@@ -1,0 +1,25 @@
+.searchList {
+	--offset: 15px;
+	position: absolute;
+	z-index: 2;
+	top: calc(100% + 7px);
+	left: 0;
+	width: 100%;
+	color: var(--color-white);
+	background-color: var(--color-blue-dark);
+	border-radius: 5px;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+
+	@media (max-width: 768px) {
+		top: 100%;
+		border-radius: 0;
+		background-color: #2f2f2f;
+	}
+}
+
+.searchItem{
+    margin: 5px;
+}

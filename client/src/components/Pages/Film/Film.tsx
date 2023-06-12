@@ -11,6 +11,7 @@ import Info from './components/Info/Info'
 import Tabs from './components/Tabs/FilmTabs'
 import Reviews from './components/Reviews/Reviews'
 import Comments from './components/Comments/Comments'
+import Rating from '../../UI/Rating/Rating'
 
 type FilmProps = {}
 
@@ -31,8 +32,7 @@ const Film:React.FC<FilmProps> = () => {
 				<div className={s.content}>
 					<div className={s.left}>
 						<img className={s.image} src={process.env.REACT_APP_API_URL + film.img} alt={film.short_desc} />
-                        <span className={s.rating}>{film.rating}</span>
-						{/* <MovieRating className={s.rating} rating={film.rating} /> */}
+						<Rating value={film.rating} classname={s.rating}/>
 					</div>
 					<div className={s.right}>
 						<Title className={s.title} variant="h1" isBold={true}>
