@@ -22,6 +22,12 @@ const SearchList:React.FC<SearchListProps> = ({
         })
     }, [])
 
+    useEffect(() => {
+		fetchFilmsByName(1, filters, value, 5).then(data => {
+            setFilms(data)
+        })
+	}, [value]);
+
     return (
         <div className={s.searchList}>
             {films && 
