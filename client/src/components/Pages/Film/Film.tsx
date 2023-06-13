@@ -61,8 +61,6 @@ const Film:React.FC<FilmProps> = () => {
 					</div>
 				</div>
 				<Tabs film={film} />
-				{/* {similarMovies?.length ? <SimilarMovies movies={similarMovies} /> : null}
-				<Reviews /> */}
 				<Reviews movieId={film.id}/>
 				<Comments movieId={film.id}/>
 			</div>

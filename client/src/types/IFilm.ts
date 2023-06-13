@@ -12,7 +12,7 @@ export interface IFilm {
     ageLimit: number;
     img: string;
     genres: Array<IGenre>;
-    actors?: Array<IPerson>;
+    actors?: Array<{person: IPerson}>;
 }
 
 export interface IFilmsInfo{

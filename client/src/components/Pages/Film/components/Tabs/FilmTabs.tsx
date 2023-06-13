@@ -23,7 +23,7 @@ const FilmTabs:React.FC<FilmTabsProps> = ({
             value: 
                 <ul>
                     {actors?.map(el => {
-                        return <li>{`${el.name} ${el.surname}`}</li>
+                        return <li className={s.person}><p>{`${el.person.name} ${el.person.surname}`}</p></li>
                     })}        
                 </ul>, 
             state: actors?.length! > 0
