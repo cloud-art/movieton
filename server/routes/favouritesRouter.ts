@@ -5,9 +5,11 @@ const favouritesRouter = Router()
 
 favouritesRouter.post('/createFavourite', FavouritesController.createFavourite)
 favouritesRouter.post('/createFavouriteFilm', FavouritesController.createFavouriteFilm)
-favouritesRouter.get('/getAllFavourites', FavouritesController.getAllFavourites)
+favouritesRouter.get('/getFavourite', FavouritesController.getFavourite)
 favouritesRouter.get('/getAllFavouriteFilms', FavouritesController.getAllFavouriteFilms)
 favouritesRouter.get('/getAll/:id', FavouritesController.getAllFilmsByUser)
 favouritesRouter.get('/getOne/:id', FavouritesController.getOne)
+favouritesRouter.get('/getOneFavouriteFilm', FavouritesController.getOneFavouriteFilm)
+favouritesRouter.delete('/deleteFavouriteFilm/:id', FavouritesController.deleteFavouriteFilm)
 
 export default favouritesRouter

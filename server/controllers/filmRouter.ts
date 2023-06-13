@@ -65,7 +65,7 @@ class FilmController {
     }
 
     async getAll(req: express.Request, res: express.Response){
-        const {rating, ratingLower, ratingUpper, year, genre, sortType, page: pageQuery, limit: limitQuery} = req.query
+        const {rating, ratingLower, ratingUpper, year, genre, sortType, page: pageQuery, limit: limitQuery, name} = req.query
         const page = parseInt((String(pageQuery))) || 1
         const limit = parseInt((String(limitQuery))) || 9
         let offset = page * limit - limit
@@ -102,6 +102,7 @@ class FilmController {
                         ),
                         {rating: {[Op.gte]: ratingLower? ratingLower: 0 }},
                         {rating: {[Op.lte]: ratingUpper? ratingUpper: 10 }},
+                        {title: {[Op.iLike]: name? `%${name}%` : '%'}}
                       ],
                       
                 },

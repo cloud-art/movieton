@@ -21,8 +21,17 @@ class FavouritesController {
         return res.json(favourites)
     }
 
-    async getAllFavourites(req: express.Request, res: express.Response){
-        const favourites = await models.Favourites.findAll()
+    async getFavourite(req: express.Request, res: express.Response){
+        const {userId} = req.query
+        let favourites: Model<any, any> | null
+
+        if (userId){
+            favourites = await models.Favourites.findOne({
+                where: {userId}
+            })
+        } else { 
+            favourites = await models.Favourites.findOne()
+        }
         return res.json(favourites)
     }
 
@@ -36,15 +45,34 @@ class FavouritesController {
         return res.json(favourite)
     }
 
+    async getOneFavouriteFilm(req: express.Request, res: express.Response){
+        const {id: favouriteFilmId, userId, filmId} = req.query
+
+        if (favouriteFilmId){
+            const favourite = await models.FavouriteFilms.findOne(
+                {
+                    where: {id: favouriteFilmId},
+                }
+            )
+            return res.json(favourite)
+        }
+        if (userId && filmId){
+            const favourite = await models.FavouriteFilms.findOne(
+                {
+                    where: {filmId},
+                    include: {model: models.Favourites, where: {userId}},
+                }
+            )
+            return res.json(favourite)
+        } 
+    }
+
     async getAllFilmsByUser(req: express.Request, res: express.Response){
         const { id: userId } = req.params
         const { page: pageQuery, limit: limitQuery } = req.query
         const page = parseInt((String(pageQuery))) || 1
         const limit = parseInt((String(limitQuery))) || 9
         let offset = page * limit - limit
-        
-        // let favourite: Model<any, any> | null;
-        // let favourite: Model<any, any>[];
             
         const favourite = await models.FavouriteFilms.findAndCountAll({
             include: [
@@ -72,77 +100,20 @@ class FavouritesController {
             order: [['createdAt', 'DESC']]
         })
 
-        //realtion MtN, from Favourite
-
-        // let favourite: Model<any, any> | null;
-            
-        // favourite = await models.Favourites.findOne({
-        //     attributes: {
-        //         include: [
-        //             [sequelize.literal('(SELECT COUNT(*) FROM "favourite_films")'), 'filmsCount'],
-        //         ]
-        //     },
-        //     include: [
-        //         {
-        //             model: models.FavouriteFilms,
-        //             include: [
-        //                 {
-        //                     model: models.Film,
-        //                     include: [
-        //                         {model: models.Genre, as: 'genres'},
-        //                         {model: models.Writers, include: [
-        //                             {model: models.Person}
-        //                         ]},
-        //                         {model: models.Actors, include: [
-        //                             {model: models.Person}
-        //                         ]},
-        //                         {model: models.Comment},
-        //                     ]
-        //                 },
-        //             ],
-        //             // separate: true,
-        //             // // @ts-ignore-next-line
-        //             // offset: 0,
-        //             // limit: 9,
-        //         },
-        //         {
-        //             model: models.User,
-        //             where: {id: userId}
-        //         }
-        //     ],
-        // })
-
-        // if realtion is Many to Many
-
-        // const {id: userId} = req.params
-        
-        // // let favourite: Model<any, any> | null;
-        // let favourite: Model<any, any>[];
-            
-
-        // favourite = await models.Favourites.findAll({
-        //     attributes: {
-        //         include: [
-        //             [sequelize.literal('(SELECT COUNT(*) FROM "favourite_films")'), 'filmsCount'],
-        //         ]
-        //     },
-        //     where: {},
-        //     include: [
-        //         {
-        //             model: models.Film, as: 'favouriteFilms',
-        //             separate: true,
-        //             //@ts-ignore-next-line
-        //             offset: 1,
-        //             limit: 10
-        //         },
-        //         {
-        //             model: models.User, where: {id: userId},
-        //         }
-
-        //     ],
-        // })
-
         return res.json(favourite)
+    }
+
+    async deleteFavouriteFilm(req: express.Request, res: express.Response){
+        const {id} = req.params
+        const favouriteFilm = await models.FavouriteFilms.findOne(
+            {
+                where: {id},
+            }
+        )
+        if (favouriteFilm){
+            favouriteFilm.destroy()
+        }
+        return res.json(favouriteFilm)
     }
 }
 
