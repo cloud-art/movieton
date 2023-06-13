@@ -1,6 +1,9 @@
+$containerMarginBottom: 40px;
+
 .container{
    	position: relative;
 	padding-top: 80px;
+	margin-bottom: $containerMarginBottom;
 
 	@media (max-width: 576px) {
 		padding-top: 50px;
@@ -12,7 +15,7 @@
 	font-size: 26px;
 	line-height: 30px;
 	font-weight: 700;
-	margin-bottom: 40px;
+	margin-bottom: $containerMarginBottom;
 	color: var(--color-light-dark);
 
 	@media (max-width: 768px) {
@@ -27,10 +30,31 @@
 	}
 }
 
+.addReview{
+	margin-bottom: $containerMarginBottom;
+}
+
 .content {
 	position: relative;
 	padding: 0 15px 0 30px;
 	border-radius: 5px;
 
     // background-color: var(--color-grey-lightest);
+}
+
+.addForm{
+	display: none;
+	max-width: 600px;
+	margin-bottom: $containerMarginBottom;
+
+	&Active{
+		display: block;
+		max-width: 600px;
+		margin-bottom: $containerMarginBottom;
+	}
+}
+
+.notFound{
+	color: var(--color-grey-darkest);
+	margin-bottom: $containerMarginBottom;
 }

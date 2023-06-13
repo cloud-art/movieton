@@ -33,7 +33,7 @@ export default interface IFilmCard {
 }
 
 export interface IReview{
-    id: number;
+    id?: number;
     title: string;
     positive: string;
     negative: string;

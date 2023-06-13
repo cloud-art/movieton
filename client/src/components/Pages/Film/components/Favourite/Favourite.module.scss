@@ -1,0 +1,7 @@
+.favourite{
+	background-color: var(--color-green);
+	// color: var(--color-dark);
+	&:hover{
+		background-color: var(--color-green-dark);
+	}
+}

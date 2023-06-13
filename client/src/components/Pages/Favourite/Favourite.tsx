@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import s from './Favourite.module.scss';
-import { fetchFavourite } from '../../../http/filmApi';
+import { fetchFavourite } from '../../../http/favouriteApi';
 import { useParams } from 'react-router-dom';
 import { IFilmsInfo } from '../../../types/IFilm';
 import FilmList from '../../FilmList/FilmList';

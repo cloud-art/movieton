@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import s from './Reviews.module.scss';
 import { IReview } from '../../../types/IFilm';
 import ReviewsList from '../../ReviewsList/ReviewsList';
-import { fetchReviews } from '../../../http/filmApi';
+import { fetchReviews } from '../../../http/reviewApi';
 import { useParams } from 'react-router-dom';
 import { Title } from '../../UI/Title/Title';
 import ReviewsWrapper from './components/ReviewsWrapper/ReviewsWrapper';

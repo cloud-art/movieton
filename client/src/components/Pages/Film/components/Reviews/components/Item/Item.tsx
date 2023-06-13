@@ -1,5 +1,5 @@
 import React from 'react'
-import { IReview } from '../../../../../../types/IFilm'
+import { IReview } from '../../../../../../../types/IFilm';
 import s from './Item.module.scss'
 
 type ItemProps = {
@@ -19,6 +19,7 @@ const Item:React.FC<ItemProps> = ({
         </div>
         <div className={s.content}>
             <span className={s.text}>{review.positive}</span>
+            <span className={s.text}>{review.negative}</span>
         </div>
     </div>
   )

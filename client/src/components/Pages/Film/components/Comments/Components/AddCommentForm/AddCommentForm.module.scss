@@ -1,0 +1,19 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
+
+.input{
+    font-size: 16px;
+    padding: 10px;
+    resize: none;
+    margin-bottom: 20px;
+    height: 120px;
+    max-height: 500px;
+    outline: none;
+}
+
+.send{
+    width: fit-content;
+}

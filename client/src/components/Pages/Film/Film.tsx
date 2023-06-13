@@ -12,12 +12,16 @@ import Tabs from './components/Tabs/FilmTabs'
 import Reviews from './components/Reviews/Reviews'
 import Comments from './components/Comments/Comments'
 import Rating from '../../UI/Rating/Rating'
+import Favourite from './components/Favourite/Favourite'
+import { useTypedSelector } from '../../../hooks/useTypedSelector'
 
 type FilmProps = {}
 
 const Film:React.FC<FilmProps> = () => {
     const [film, setFilm] = useState<IFilm>()
     const {id} = useParams()
+
+	const isAuth = useTypedSelector(state => state.userReducer.isAuth)
 
     useEffect(() => {
         if (id && parseInt(id)){
@@ -48,15 +52,7 @@ const Film:React.FC<FilmProps> = () => {
 							>
 								Смотреть
 							</ButtonDefault>
-							<ButtonDefault
-								// onClick={() => push(`/room/${data?.id}`)}
-								className={s.button}
-								variant="regular"
-								// disabled={isError}
-								startIcon={<FiBookmark />}
-							>
-								Смотреть
-							</ButtonDefault>
+							<Favourite filmId={film.id} disabled={!isAuth}/>
 						</div>
 						<Title variant="h2" isBold={true} className={s. infoLabel}>
 							О фильме
