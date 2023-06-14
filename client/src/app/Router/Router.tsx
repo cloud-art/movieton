@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Layout from '../../Layout/Layout';
-import { authRoutes, publicRoutes } from './routes';
+import { adminRoutes, authRoutes, publicRoutes } from './routes';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 function Router() {
@@ -10,7 +10,13 @@ function Router() {
     return (
         <Routes>
             <Route path={'/'} element={<Layout />}>
-                {user.isAuth && authRoutes.map(({ path, Component }) => <Route key={path} path={path} element={<Component />} />)}
+                {user.isAuth && user.user.role === 'ADMIN' && adminRoutes.map(({path, Component}) => 
+                    <Route key={path} path={path} element={<Component />}/>
+                )}
+
+                {user.isAuth && authRoutes.map(({ path, Component }) => 
+                    <Route key={path} path={path} element={<Component />} />
+                )}
 
                 {publicRoutes.map(({ path, Component }) => (
                     <Route key={path} path={path} element={<Component />} />

@@ -7,7 +7,7 @@ import { useActions } from '../../hooks/useActions';
 import { useRef } from 'react';
 import useOnClickOutside from '../../hooks/useOnClickOutside';
 import { Link } from 'react-router-dom';
-import { LOGIN_ROUTE } from '../../utils/consts';
+import { ADMIN_ROUTE, LOGIN_ROUTE } from '../../utils/consts';
 import Search from '../Search/Search';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import Button from '../UI/Button/Button';
@@ -37,13 +37,31 @@ const Header: React.FunctionComponent<HeaderProps> = () => {
                     <Logo />
                 </div>
                 <Search />
-                {!user.isAuth ?
-                <Link to={LOGIN_ROUTE} className={s.link}>
-                    <span>Войти</span>
-                </Link>
-                : <Button onClick={handleExit} className={s.link}>Выйти</Button>
-                }
-
+                <div className={s.buttons}>
+                    {user.isAuth && user.user.role === 'ADMIN' &&
+                        <Link 
+                            to={ADMIN_ROUTE}
+                            className={s.link}
+                        >
+                            Админ панель
+                        </Link>
+                    }
+                    
+                    {!user.isAuth ?
+                        <Link 
+                            to={LOGIN_ROUTE} 
+                            className={s.link}
+                        >
+                            <span>Войти</span>
+                        </Link>
+                    :   <Button 
+                            onClick={handleExit} 
+                            className={s.link}
+                        >
+                            Выйти
+                        </Button>
+                    }
+                </div>
             </div>
         </header>
     );

@@ -1,0 +1,24 @@
+.title{ 
+    margin-bottom: 40px;
+}
+
+.label{
+    margin-bottom: 20px;
+    span{
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+.content{
+    display: grid;
+	grid-template-columns: auto auto auto;
+    row-gap: 30px;
+    column-gap: 15px;
+}
+
+.bottom{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}

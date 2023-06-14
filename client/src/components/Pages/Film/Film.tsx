@@ -25,7 +25,7 @@ const Film:React.FC<FilmProps> = () => {
 
     useEffect(() => {
         if (id && parseInt(id)){
-            fetchOneFilm(parseInt(id)).then(film => setFilm(film))
+            fetchOneFilm(parseInt(id)).then(film => setFilm({...film}))
         } 
     }, [])
 

@@ -1,6 +1,6 @@
 import IRouter from '../../types/IRouter';
 
-import { FAVOURITE_ROUTE, FILMS_ROUTE, HOMEPAGE_ROUTE, SERIES_ROUTE, LOGIN_ROUTE, REGISTER_ROUTE, FILM_ROUTE, REVIEWS_ROUTE, SEARCH_ROUTE } from '../../utils/consts';
+import { FAVOURITE_ROUTE, FILMS_ROUTE, HOMEPAGE_ROUTE, SERIES_ROUTE, LOGIN_ROUTE, REGISTER_ROUTE, FILM_ROUTE, REVIEWS_ROUTE, SEARCH_ROUTE, ADMIN_ROUTE } from '../../utils/consts';
 
 import Homepage from '../../components/Pages/Homepage/Homepage';
 import Films from '../../components/Pages/Films/Films';
@@ -11,11 +11,19 @@ import Register from '../../components/Pages/Register/Register';
 import Film from '../../components/Pages/Film/Film';
 import Reviews from '../../components/Pages/Reviews/Reviews';
 import Search from '../../components/Pages/Search/Search';
+import Admin from '../../components/Pages/Admin/Admin';
+
+export const adminRoutes: Array<IRouter> = [
+    {
+        path: ADMIN_ROUTE,
+        Component: Admin
+    },
+]
 
 export const authRoutes: Array<IRouter> = [
     {
         path: FAVOURITE_ROUTE,
-        Component: Favourite,
+        Component: Favourite
     },
 ];
 export const publicRoutes: Array<IRouter> = [
