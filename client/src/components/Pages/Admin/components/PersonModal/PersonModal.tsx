@@ -44,7 +44,7 @@ const PersonModal:React.FC<PersonModalProps> = ({
                         title: data.label
                     }
                 })    
-            ).then(data => console.log(data))
+            )
             closeModal()
             setName('')
             setSurname('')

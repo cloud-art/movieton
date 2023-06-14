@@ -91,9 +91,9 @@ const FilmModal:React.FC<FilmModalProps> = ({
     }
  
     useEffect(() => {
-        fetchGenres().then(data => {setGenresData(data); console.log(data)})
-        fetchAllPersonsByActivity('Режиссёр').then(data => {setWritersData(data); console.log(data)})
-        fetchAllPersonsByActivity('Актёр').then(data => {setActorsData(data); console.log(data)})
+        fetchGenres().then(data => setGenresData(data))
+        fetchAllPersonsByActivity('Режиссёр').then(data => setWritersData(data))
+        fetchAllPersonsByActivity('Актёр').then(data => setActorsData(data))
     }, []) 
 
     return (

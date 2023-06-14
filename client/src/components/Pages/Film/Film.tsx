@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { fetchOneFilm } from '../../../http/filmApi'
+import { deleteFilm, fetchOneFilm } from '../../../http/filmApi'
 import s from './Film.module.scss'
 import classNames from 'classnames'
 import { Title } from '../../UI/Title/Title'
@@ -22,12 +22,21 @@ const Film:React.FC<FilmProps> = () => {
     const {id} = useParams()
 
 	const isAuth = useTypedSelector(state => state.userReducer.isAuth)
+    const userRole = useTypedSelector(state => state.userReducer.user.role)
 
     useEffect(() => {
-        if (id && parseInt(id)){
-            fetchOneFilm(parseInt(id)).then(film => setFilm({...film}))
-        } 
+        id && parseInt(id) &&
+		fetchOneFilm(parseInt(id)).then((data) => {
+			setFilm({
+				...data, 
+				actors: data.actors.map((e: any) => {return e.person})
+			});
+		})
     }, [])
+
+	const onDeleteClick = () => {
+		film && film.id && deleteFilm(film.id).then(data => console.log(data))
+	}
 
     return (
         film ? ( 
@@ -58,6 +67,15 @@ const Film:React.FC<FilmProps> = () => {
 							О фильме
 						</Title>
 						<Info film={film} />
+						{isAuth && userRole === 'ADMIN' &&
+						<ButtonDefault
+							onClick={onDeleteClick}
+							variant='delete'
+							className={s.delete}	
+						>
+							Удалить
+						</ButtonDefault>
+						}
 					</div>
 				</div>
 				<Tabs film={film} />

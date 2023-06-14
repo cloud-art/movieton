@@ -20,10 +20,9 @@ const ActivityModal:React.FC<ActivityModalProps> = ({
     const onSubmit = (e: any) => {
         e.preventDefault()
         if (activity !== ''){
-            createActivity(activity).then(data => console.log(data))
+            createActivity(activity)
             closeModal()
         }
-
     }
 
     return (

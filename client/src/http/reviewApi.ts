@@ -45,3 +45,13 @@ export const createComment = async (filmId: number, userId: number, text: string
     const {data: comment} = await $host.post('api/comment/create', commentData);
     return comment;
 }
+
+export const deleteComment = async (commentId: number) => {
+    const {data: comment} = await $host.delete(`api/comment/delete/${commentId}`);
+    return comment;
+}
+
+export const deleteReview = async (reviewId: number) => {
+    const {data: comment} = await $host.delete(`api/review/delete/${reviewId}`);
+    return comment;
+}

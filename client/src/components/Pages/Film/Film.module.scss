@@ -15,7 +15,8 @@
 }
 
 .right{
-   width: 100%; 
+	position: relative;
+   	width: 100%; 
 }
 
 .image{
@@ -72,4 +73,10 @@
 
 .infoLabel{
 	margin-bottom: 20px;
+}
+
+.delete{
+	position: absolute;
+	right: 10px;
+	top: 10px;
 }

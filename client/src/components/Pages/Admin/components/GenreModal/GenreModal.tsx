@@ -20,7 +20,7 @@ const GenreModal:React.FC<GenreModalProps> = ({
     const onSubmit = (e: any) => {
         e.preventDefault()
         if (genre !== ''){
-            createGenre(genre).then(data => console.log(data))
+            createGenre(genre)
             closeModal()
         }
 

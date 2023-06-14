@@ -48,6 +48,11 @@ export const fetchOneFilm = async (id: number) => {
     return film
 }
 
+export const deleteFilm = async (filmId: number) => {
+    const {data: film} = await $host.delete(`api/film/delete/${filmId}`)
+    return film
+}
+
 export const fetchGenres = async () => {
     const {data: genres} = await $host.get(`api/genre/getAll`)
     return genres
