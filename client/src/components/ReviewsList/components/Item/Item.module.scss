@@ -1,4 +1,5 @@
 .item {
+	position: relative;
     padding: 20px;
     background-color: var(--color-grey-lightest);
     border-radius: 10px;
@@ -59,6 +60,8 @@
     padding: 10px;
 }
 
-.text{
-    
+.delete{
+	position: absolute;
+	right: 10px;
+	top: 10px;
 }

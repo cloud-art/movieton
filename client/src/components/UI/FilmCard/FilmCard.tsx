@@ -17,10 +17,7 @@ const FilmCard:React.FC<filmCardProps> = ({film, classname}) => {
     const [mouseMoved, setMouseMoved] = useState(false);
     const navigate = useNavigate()
     const handleClick = () => {
-        if (!mouseMoved) {
-            console.log('click')
-            navigate(FILM_ROUTE + `/${film.id}`)
-        }
+        if (!mouseMoved) navigate(FILM_ROUTE + `/${film.id}`)
     };
     //
   return (
