@@ -10,6 +10,7 @@ personRouter.post(
         PersonController.create
     )
 personRouter.get('/getAll', PersonController.getAll)
+personRouter.get('/getAllWithActivity', PersonController.getAllWithActivity)
 personRouter.get('/getOne/:id', PersonController.getOne)
 
 export default personRouter

@@ -180,6 +180,19 @@ class FilmController {
         )
         return res.json(film)
     }
+
+    async deleteFilm(req: express.Request, res: express.Response){
+        const {id} = req.params
+        const film = await models.Film.findOne(
+            {
+                where: {id},
+            }
+        )
+        if (film){
+            film.destroy()
+        }
+        return res.json(film)
+    }
 }
 
 export default new FilmController()

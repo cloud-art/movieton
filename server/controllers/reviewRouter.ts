@@ -45,6 +45,19 @@ class ReviewController {
         )
         return res.json(review)
     }
+
+    async deleteReview(req: express.Request, res: express.Response){
+        const {id} = req.params
+        const review = await models.Review.findOne(
+            {
+                where: {id},
+            }
+        )
+        if (review){
+            review.destroy()
+        }
+        return res.json(review)
+    }
 }
 
 export default new ReviewController()

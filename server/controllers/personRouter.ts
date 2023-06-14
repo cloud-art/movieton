@@ -41,6 +41,21 @@ class PersonController {
         )
         return res.json(person)
     }
+
+    async getAllWithActivity(req: express.Request, res: express.Response){
+        const { activity } = req.query
+        const person = await models.Person.findAll(
+            {
+                include: [
+                    {
+                        model: models.Activity, as: 'activities',
+                        where: {title: activity || ''}
+                    }
+                ]
+            }
+        )
+        return res.json(person)
+    }
 }
 
 export default new PersonController()

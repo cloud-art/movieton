@@ -12,5 +12,6 @@ filmRouter.post(
 filmRouter.get('/getAll', FilmController.getAll)
 filmRouter.get('/getAllFavourites', FilmController.getAllFavourites)
 filmRouter.get('/getOne/:id', FilmController.getOne)
+filmRouter.delete('/delete/:id', FilmController.deleteFilm)
 
 export default filmRouter

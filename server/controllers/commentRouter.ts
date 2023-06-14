@@ -44,6 +44,19 @@ class CommentsController {
         }
         return res.json(comments)
     }
+
+    async deleteComment(req: express.Request, res: express.Response){
+        const {id} = req.params
+        const comment = await models.Comment.findOne(
+            {
+                where: {id},
+            }
+        )
+        if (comment){
+            comment.destroy()
+        }
+        return res.json(comment)
+    }
 }
 
 export default new CommentsController()
