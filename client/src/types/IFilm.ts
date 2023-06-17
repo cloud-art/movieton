@@ -3,6 +3,7 @@ import { IPerson } from "./IPerson";
 
 export interface IFilm {
     id: number;
+    kinopoiskId?: number;
     title: string;
     desc: string;
     short_desc: string;
@@ -30,7 +31,7 @@ export default interface IFilmCard {
     rating: number;
     year: number;
     genre: IGenre;
-    duration: string;
+    duration: number;
 }
 
 export interface IReview{

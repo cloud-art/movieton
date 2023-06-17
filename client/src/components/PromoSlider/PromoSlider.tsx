@@ -50,6 +50,7 @@ const PromoSlider: React.FC<PromoSliderProps> = ({data, classname}) => {
                     return(
                         <div key={e.id} className={s.promoCard}>
                             <PromoCard 
+                                id={e.id}
                                 img={e.img}
                                 title={e.title}
                                 desc={e.desc}

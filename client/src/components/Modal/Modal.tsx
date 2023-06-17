@@ -6,7 +6,6 @@ type ModalProps = {
     onAfterOpen?: () => void,
     closeModal: () => void,
     classname?: string,
-    style?: React.CSSProperties,
 }
 
 const Modal:React.FC<PropsWithChildren<ModalProps>> = ({
@@ -15,7 +14,6 @@ const Modal:React.FC<PropsWithChildren<ModalProps>> = ({
     onAfterOpen,
     closeModal,
     classname,
-    style,
 }) => {
 
     const modalStyles = {
@@ -29,7 +27,6 @@ const Modal:React.FC<PropsWithChildren<ModalProps>> = ({
             bottom: 'auto',
             marginRight: '-50%',
             transform: 'translate(-50%, -50%)',
-            ...style
         },
         
     }

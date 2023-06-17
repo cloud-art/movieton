@@ -13,27 +13,26 @@ const Info:React.FC<InfoProps> = ({film}) => {
     const filmInfo: Array<AboutItem> = [
         {
             title: 'Жанр',
-			value: genres?.map((el, idx) => (
-				<Fragment key={idx}>
-					{idx ? ', ' : ''}
-					{el.title}
-				</Fragment>
-			)),
-			state: genres?.length,
+            value: genres?.map((el, idx) => (
+            <Fragment key={idx}>
+              {idx ? ', ' : ''}
+              {el.title}
+            </Fragment>
+          )),
+          state: genres?.length,
         },
         { title: 'О фильме', value: short_desc, state: short_desc },
         {
-			title: 'Возраст',
-			value: <span className={s.age}>{ageLimit}+</span>,
-			state: ageLimit,
-		},
+          title: 'Возраст',
+          value: <span className={s.age}>{ageLimit}+</span>,
+          state: ageLimit,
+        },
         { title: 'Время', value: `${duration} мин`, state: duration },
-
     ]
 
-  return (
-    <AboutList items={filmInfo}/>
-  )
+    return (
+        <AboutList items={filmInfo}/>
+    )
 }
 
 export default Info

@@ -68,7 +68,7 @@ const PersonModal:React.FC<PersonModalProps> = ({
                 className={s.form} 
                 onSubmit={onSubmit}
             >
-                <Title className={s.title}>Добавление вида работы</Title>
+                <Title className={s.title}>Добавление личности</Title>
                 <InputText 
                     label='Имя'
                     className={s.label}

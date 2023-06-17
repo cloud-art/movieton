@@ -18,9 +18,9 @@ const Grid: React.FC<GridProps> = ({ films }) => {
                         title: el.title,
                         rating: el.rating,
                         genre: el.genres[0],
-                        duration: el.duration + ' мин.',
+                        duration: el.duration,
                         year: new Date(el.date).getFullYear(),
-                        img: process.env.REACT_APP_API_URL + el.img
+                        img: el.img
                     }
                 }
                 classname={s.card}/>

@@ -1,42 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import FilmsList from './components/FilmList/FilmsList';
 import s from './Homepage.module.scss';
 import PromoSlider from '../../PromoSlider/PromoSlider';
+import { fetchFilms } from '../../../http/filmApi';
+import { IFilm } from '../../../types/IFilm';
 
 function Homepage() {
     const cards = [
         {
-            id: 1,
-            img: 'https://thumbs.dfs.ivi.ru/storage37/contents/0/a/1d3381c9a1549a24212f58b8c2495b.jpg/1216x524/?q=85',
-            title: 'Название',
-            desc: 'описание описание описание описание описание описание описаниеописание описание описание описание описание',
+            id: 21,
+            img: process.env.REACT_APP_API_URL + 'JohnUik.jpg',
+            title: 'Джон Уик',
+            desc: 'Чтобы обрести свободу, киллер-изгой бросает вызов Правлению кланов. Самая зрелищная часть стильной экшен-саги',
         },
         {
-            id: 2,
-            img: 'https://thumbs.dfs.ivi.ru/storage37/contents/0/a/1d3381c9a1549a24212f58b8c2495b.jpg/1216x524/?q=85',
-            title: 'Название',
-            desc: 'описание описание описание описание описание описание описаниеописание описание описание описание описание',
+            id: 22,
+            img: process.env.REACT_APP_API_URL + 'Nasledniki.jpg',
+            title: 'Наследники',
+            desc: 'Кто возглавит самую крупную медиакорпорацию в мире? Финал главной драмы современности',
         },
         {
-            id: 3,
-            img: 'https://thumbs.dfs.ivi.ru/storage37/contents/0/a/1d3381c9a1549a24212f58b8c2495b.jpg/1216x524/?q=85',
-            title: 'Название',
-            desc: 'описание описание описание описание описание описание описаниеописание описание описание описание описание',
-        },
-        {
-            id: 4,
-            img: 'https://thumbs.dfs.ivi.ru/storage37/contents/0/a/1d3381c9a1549a24212f58b8c2495b.jpg/1216x524/?q=85',
-            title: 'Название',
-            desc: 'описание описание описание описание описание описание описаниеописание описание описание описание описание',
-        },
+            id: 25,
+            img: process.env.REACT_APP_API_URL + 'Proklyatie.jpg',
+            title: 'Проклятие. Посвящение',
+            desc: 'Грейс расследует загадочное самоубийство брата-священника. Британский хоррор о тайнах женского монастыря',
+        }
     ]
+
+    const [filmsList, setFilmsList] = useState<Array<IFilm>>([])
+
+    useEffect(() => {
+        fetchFilms(1).then(films => setFilmsList(films.rows))
+    }, [])
 
     return (
         <div className={s.Homepage}>
                 <PromoSlider data={cards} classname={s.promoSlider}></PromoSlider>
             <div className="container">  
-                <FilmsList title={'Фильмы'}></FilmsList>  
-                <FilmsList title={'Сериалы'}></FilmsList>
+                <FilmsList films={filmsList} title={'Фильмы'}></FilmsList>  
+                {/* <FilmsList title={'Сериалы'}></FilmsList> */}
             </div>
         </div>
     );

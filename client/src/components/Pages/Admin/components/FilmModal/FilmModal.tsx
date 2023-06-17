@@ -21,6 +21,7 @@ const FilmModal:React.FC<FilmModalProps> = ({
     isOpen,
     closeModal,
 }) => {
+    const [kinopoiskId, setKinopoiskId] = useState('')
     const [title, setTitle] = useState('')
     const [desc, setDesc] = useState('')
     const [shortDesc, setShortDesc] = useState('')
@@ -44,7 +45,8 @@ const FilmModal:React.FC<FilmModalProps> = ({
     const onSubmit = (e: any) => {
         e.preventDefault()
         if (
-            title !== ''
+            kinopoiskId !== ''
+            && title !== ''
             && desc !== ''
             && shortDesc !== ''
             && rating !== ''
@@ -57,6 +59,7 @@ const FilmModal:React.FC<FilmModalProps> = ({
             && actors.length
         ){
             createFilm(
+                parseInt(kinopoiskId),
                 title,
                 desc,
                 shortDesc,
@@ -71,14 +74,14 @@ const FilmModal:React.FC<FilmModalProps> = ({
                         title: data.label
                     }
                 }),
-                actors.map(data => {
+                writers.map(data => {
                     return {
                         id: parseInt(data.value),
                         name: '',
                         surname: ''
                     }
                 }),
-                writers.map(data => {
+                                actors.map(data => {
                     return {
                         id: parseInt(data.value),
                         name: '',
@@ -105,8 +108,14 @@ const FilmModal:React.FC<FilmModalProps> = ({
                 className={s.form} 
                 onSubmit={onSubmit}
             >
-                <Title className={s.title}>Добавление вида работы</Title>
+                <Title className={s.title}>Добавление фильмов</Title>
                 <div className={s.content}>
+                    <InputText 
+                        label='Id Кинопоиска'
+                        className={s.label}
+                        value={kinopoiskId}
+                        onChange={(e: any) => setKinopoiskId(e.target.value)}
+                    />
                     <InputText 
                         label='Название'
                         className={s.label}

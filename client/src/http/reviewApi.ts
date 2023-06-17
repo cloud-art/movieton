@@ -28,8 +28,8 @@ export const createReview = async (filmId: number, userId: number, review: IRevi
     commentData.append("title", review.title);
     commentData.append("positive", review.positive);
     commentData.append("negative", review.negative);
-    commentData.append("userId", String(review.userId));
-    commentData.append("filmId", String(review.filmId));
+    commentData.append("userId", String(userId));
+    commentData.append("filmId", String(filmId));
     commentData.append("star", String(10));
 
     const {data} = await $host.post('api/review/create', commentData);

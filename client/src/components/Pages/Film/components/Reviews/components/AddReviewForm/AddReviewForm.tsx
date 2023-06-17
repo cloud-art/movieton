@@ -34,7 +34,7 @@ const AddReviewForm:React.FC<AddReviewFormProps> = ({
             setReview(reviewInitialState)
         }
     }
-
+    console.log(userId)
     return (
         <div className={classname}>
             <Title className={s.title}>Написать отзыв</Title>

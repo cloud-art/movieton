@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { IFilmsInfo } from '../../types/IFilm';
 
 const initialState: IFilmsInfo = {
-    count: 0,
+    count: 1,
     isLoading: false,
     isFetching: false,
     films: [],

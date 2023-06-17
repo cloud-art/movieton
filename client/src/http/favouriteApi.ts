@@ -11,7 +11,7 @@ export const fetchFavourite = async (userId: number, page?:number, limit?: numbe
 }
 
 export const fetchFavouriteInfo = async (userId: number) => {
-    const {data} = await $host.get(`api/favourites/getFavourite?${userId}`)
+    const {data} = await $host.get(`api/favourites/getFavourite?userId=${userId}`)
     return data
 }
 

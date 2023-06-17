@@ -1,7 +1,7 @@
-.Login {
-    margin: 0 auto;
-    // background-color: var(--color-blue-light);
-    color: var(--color-black);
+.loginContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .authForm {

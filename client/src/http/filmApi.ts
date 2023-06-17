@@ -5,6 +5,7 @@ import { IGenre } from "../types/IGenre";
 import { IPerson } from "../types/IPerson";
 
 export const createFilm = async (
+    kinopoiskId: number, 
     title: string, 
     desc: string, 
     shortDesc: string, 
@@ -18,6 +19,7 @@ export const createFilm = async (
     actors: Array<IPerson>
 ) => {
     var favouriteFilm = new FormData();
+    favouriteFilm.append("kinopoiskId", String(kinopoiskId));
     favouriteFilm.append("title", title);
     favouriteFilm.append("desc", desc);
     favouriteFilm.append("short_desc", shortDesc);
@@ -33,9 +35,14 @@ export const createFilm = async (
     return data
 }
 
-export const fetchFilms = async (page: number, filters: IFilters) => {
-    const {data: films} = await $host.get(`api/film/getAll?ratingLower=${filters.ratingLower}&ratingUpper=${filters.ratingUpper}&year=${filters.year}&genre=${filters.genre}&sortType=${filters.sortType}&page=${page}&limit=${process.env.REACT_APP_FILMS_OFFSET || 12}`)
-    return films
+export const fetchFilms = async (page: number, filters?: IFilters) => {
+    if (filters){
+        const {data: films} = await $host.get(`api/film/getAll?ratingLower=${filters.ratingLower}&ratingUpper=${filters.ratingUpper}&year=${filters.year}&genre=${filters.genre}&sortType=${filters.sortType}&page=${page}&limit=${process.env.REACT_APP_FILMS_OFFSET || 12}`)
+        return films
+    } else {
+        const {data: films} = await $host.get(`api/film/getAll?page=${page}&limit=${process.env.REACT_APP_FILMS_OFFSET || 12}`)
+        return films
+    }
 }
 
 export const fetchFilmsByName = async (page: number,  filters: IFilters, name: string, limit?: number) => {

@@ -1,6 +1,6 @@
 import IRouter from '../../types/IRouter';
 
-import { FAVOURITE_ROUTE, FILMS_ROUTE, HOMEPAGE_ROUTE, SERIES_ROUTE, LOGIN_ROUTE, REGISTER_ROUTE, FILM_ROUTE, REVIEWS_ROUTE, SEARCH_ROUTE, ADMIN_ROUTE } from '../../utils/consts';
+import { FAVOURITE_ROUTE, FILMS_ROUTE, HOMEPAGE_ROUTE, SERIES_ROUTE, LOGIN_ROUTE, REGISTER_ROUTE, FILM_ROUTE, REVIEWS_ROUTE, SEARCH_ROUTE, ADMIN_ROUTE, PLAYER_ROUTE } from '../../utils/consts';
 
 import Homepage from '../../components/Pages/Homepage/Homepage';
 import Films from '../../components/Pages/Films/Films';
@@ -12,6 +12,7 @@ import Film from '../../components/Pages/Film/Film';
 import Reviews from '../../components/Pages/Reviews/Reviews';
 import Search from '../../components/Pages/Search/Search';
 import Admin from '../../components/Pages/Admin/Admin';
+import Player from '../../components/Player/Player';
 
 export const adminRoutes: Array<IRouter> = [
     {
@@ -27,6 +28,10 @@ export const authRoutes: Array<IRouter> = [
     },
 ];
 export const publicRoutes: Array<IRouter> = [
+    {
+        path: PLAYER_ROUTE,
+        Component: Player
+    },
     {
         path: HOMEPAGE_ROUTE,
         Component: Homepage

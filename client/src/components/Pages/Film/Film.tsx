@@ -14,6 +14,7 @@ import Comments from './components/Comments/Comments'
 import Rating from '../../UI/Rating/Rating'
 import Favourite from './components/Favourite/Favourite'
 import { useTypedSelector } from '../../../hooks/useTypedSelector'
+import Player from './components/Player/Player'
 
 type FilmProps = {}
 
@@ -29,13 +30,15 @@ const Film:React.FC<FilmProps> = () => {
 		fetchOneFilm(parseInt(id)).then((data) => {
 			setFilm({
 				...data, 
-				actors: data.actors.map((e: any) => {return e.person})
+				ageLimit: data.age_limit,
+				actors: data.actors.map((e: any) => {return e.person}),
+				writers: data.writers.map((e: any) => {return e.person})
 			});
 		})
-    }, [])
+    }, [])  
 
 	const onDeleteClick = () => {
-		film && film.id && deleteFilm(film.id).then(data => console.log(data))
+		film && film.id && deleteFilm(film.id)
 	}
 
     return (
@@ -52,15 +55,7 @@ const Film:React.FC<FilmProps> = () => {
 							{film.title} {new Date(film.date).getFullYear()}
 						</Title>
 						<div className={s.buttons}>
-							<ButtonDefault
-								// onClick={() => push(`/room/${data?.id}`)}
-								className={s.button}
-								variant="regular"
-								// disabled={isError}
-								startIcon={<FiPlay />}
-							>
-								Смотреть
-							</ButtonDefault>
+							{film.kinopoiskId && <Player kinopoiskId={film.kinopoiskId} classname={s.button}/>}
 							<Favourite filmId={film.id} disabled={!isAuth}/>
 						</div>
 						<Title variant="h2" isBold={true} className={s. infoLabel}>

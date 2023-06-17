@@ -33,6 +33,7 @@ const Favourite:React.FC<FavouriteProps> = ({
                 setFavouriteFilm(null)
             }
         })
+        console.log(favouriteInfo)
     }, [])
 
     const onClickAdd = () => {
@@ -43,7 +44,6 @@ const Favourite:React.FC<FavouriteProps> = ({
                 } else{ 
                     setFavouriteFilm(null)
                 }
-                console.log(film)
             })
         })
     }

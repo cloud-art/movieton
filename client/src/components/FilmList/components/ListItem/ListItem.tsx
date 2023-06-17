@@ -29,7 +29,7 @@ const ListItem:React.FC<ListItemProps> = ({
                 <span className={s.rating}>{film.rating}</span>
             </div>
             <div className={s.bottom}>
-                <span>{film.short_desc}</span>
+                <span>{film.desc}</span>
             </div> 
         </div>
     </li>

@@ -19,13 +19,13 @@ const Dropdown: React.FunctionComponent<DropdownProps> = () => {
         {
             icon: <FiFilm />,
             href: FILMS_ROUTE,
-            text: 'Полнометражки'
+            text: 'Фильмы'
         },
-        {
-            icon: <FiPlayCircle />,
-            href: SERIES_ROUTE,
-            text: 'Сериалы'
-        },
+        // {
+        //     icon: <FiPlayCircle />,
+        //     href: SERIES_ROUTE,
+        //     text: 'Сериалы'
+        // },
         {
             icon: <FiHeart />,
             href: FAVOURITE_ROUTE,

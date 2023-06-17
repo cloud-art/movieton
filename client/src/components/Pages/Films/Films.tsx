@@ -37,7 +37,7 @@ const Films: React.FunctionComponent<FilmsProps> = () => {
         <div className={s.Films}>
             <div className="container">
                 <div className={s.container}>
-                    <FiltersForm />
+                    <FiltersForm classname={s.filters}/>
                     <div className={s.content}>
                         <Gallery filmsInfo={filmsInfo}>
                             <FilmsGrid films={filmsInfo.films}/>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import s from './FiltersForm.module.scss'
 import { useActions } from '../../hooks/useActions'
 import { Controller, useForm } from 'react-hook-form'
@@ -6,16 +6,22 @@ import { Title } from '../UI/Title/Title'
 import ButtonDefault from '../UI/ButtonDefault/ButtonDefault'
 import { Slider } from '../UI/Slider/Slider'
 import { Select } from '../UI/Select/Select'
-import years, { genres, sortBy } from './FiltersConsts'
+import years, { sortBy } from './FiltersConsts'
 import { Filter } from './components/Filter'
+import classNames from 'classnames'
+import { fetchGenres } from '../../http/filmApi'
 
 interface FiltersFormProps{
-
+    classname?: string;
 }
 
-const FiltersForm:React.FunctionComponent<FiltersFormProps> = () => {
+const FiltersForm:React.FunctionComponent<FiltersFormProps> = ({
+    classname,
+}) => {
     const { toggleFilters } = useActions()
     const {setPage, setFilterGenre, setFilterRating, setFilterRatingLower, setFilterRatingUpper, setFiterYear, setSortType, resetFilters} = useActions()
+
+    const [genres, setGenres] = useState<Array<{label: string, value: string}>>([{label: 'Все жанры', value: ''}])
 
     const { handleSubmit, control, getValues, reset } = useForm({
         defaultValues: {
@@ -25,6 +31,17 @@ const FiltersForm:React.FunctionComponent<FiltersFormProps> = () => {
             year: years[0]
         }
     })
+
+    useEffect(() => {
+        fetchGenres().then(data => setGenres(
+            [
+                ...genres, 
+                ...data.map((genre: any) => {
+                    return {label: genre.title, value: genre.id}
+                })
+            ]
+        ))
+    }, [])
 
     const onSubmit = handleSubmit((data) => {
         const { sort, rating, year, genres } = data;
@@ -57,7 +74,7 @@ const FiltersForm:React.FunctionComponent<FiltersFormProps> = () => {
         <form 
             action="#"
             onSubmit={onSubmit}
-            className={s.filters}
+            className={classNames(s.filters, classname)}
         >
             <div className={s.main}>
                 <Controller

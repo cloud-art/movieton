@@ -7,6 +7,7 @@ import { fetchFilms, fetchFilmsByName } from '../../../http/filmApi';
 import FilmsGrid from '../../FilmsGrid/FilmsGrid';
 import Gallery from '../../Gallery/Gallery';
 import { useParams } from 'react-router-dom';
+import { Title } from '../../UI/Title/Title';
 
 interface SearchProps {}
 
@@ -33,8 +34,9 @@ const Search: React.FunctionComponent<SearchProps> = () => {
         <div className={s.page}>
             <div className="container">
                 <div className={s.container}>
-                    <FiltersForm />
+                    <FiltersForm classname={s.filters}/>
                     <div className={s.content}>
+                        {searchValue && <Title className={s.title}>Полученные результаты, по запросу: "{searchValue}"</Title>}
                         <Gallery filmsInfo={filmsInfo}>
                             <FilmsGrid films={filmsInfo.films}/>
                         </Gallery>

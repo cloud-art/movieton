@@ -31,14 +31,14 @@ const FilmCard:React.FC<filmCardProps> = ({film, classname}) => {
     >
         <div className={s.imageSection}>
             <div className={s.imgWrapper}>
-                <img className={s.img} src={film.img} />
+                <img className={s.img} src={process.env.REACT_APP_API_URL + film.img} />
             </div>
             <div className={s.properties}>
                 <div className={s.inner}>
                     <PropertiesRow><div className={s.rating}>{film.rating}</div></PropertiesRow>
                     <div className={s.propertiesInfo}>
                         <PropertiesRow><div>{film.year}, {film.genre.title}</div></PropertiesRow>
-                        <PropertiesRow><div>{film.duration}</div></PropertiesRow> 
+                        <PropertiesRow><div>{`${film.duration} мин.`}</div></PropertiesRow> 
                     </div>
                 </div>
             </div>

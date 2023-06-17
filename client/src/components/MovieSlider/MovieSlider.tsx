@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import s from './MovieSlider.module.scss'
 import Slider from 'react-slick'
-import IFilmCard from '../../types/IFilm';
+import IFilmCard, { IFilm } from '../../types/IFilm';
 import FilmCard from '../UI/FilmCard/FilmCard';
 import Button from '../UI/Button/Button';
 import classNames from 'classnames';
@@ -10,7 +10,7 @@ import 'slick-carousel/slick/slick.scss'
 import 'slick-carousel/slick/slick-theme.scss'
 
 type MovieSliderProps = {
-    films: Array<IFilmCard>;
+    films: Array<IFilm>;
 }
 
 export const MovieSlider:React.FC<MovieSliderProps> = ({films}) => {
@@ -67,21 +67,26 @@ export const MovieSlider:React.FC<MovieSliderProps> = ({films}) => {
         ]
     };
     const sliderRef = useRef<Slider>(null)
+    console.log(films)
   return (
     <div className={s.gallery}>
         <div className={s.viewport}>
             <Button className={classNames(s.button, s.buttonPrev)} onClick={() => sliderRef?.current?.slickPrev()}><FiChevronLeft/></Button>
                 <Slider ref={sliderRef} className={s.gallerySlider} {...settings}>
-                    {films.map((e) => {
-                        return(
+                    {films.map((e: IFilm) => {
+                        return (
                             <div key={e.id} className={s.galleryItem}>
                                 <FilmCard
-                                    film={e}
+                                    film={{
+                                        ...e,
+                                        year: new Date(e.date).getFullYear(),
+                                        genre: e.genres[0]
+                                    }}
                                 />
                             </div>   
                         )
-                    })}
-                </Slider>    
+                    })} 
+                </Slider>     
             <Button className={classNames(s.button, s.buttonNext)} onClick={() => sliderRef?.current?.slickNext()}><FiChevronRight/></Button>
         </div>
     </div>

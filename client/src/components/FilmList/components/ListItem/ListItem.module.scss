@@ -36,10 +36,13 @@ a{
 .top{
     display: flex;
     justify-content: space-between;
+    padding-bottom: 20px;
 }
 
 .bottom{
-    padding-top: 30px;
+    display: flex;
+    padding-bottom: 30px;
+    align-self: center;
 }
 
 .rating {
