@@ -4,6 +4,11 @@ import Model from 'sequelize/types/model'
 import sequelize from '../db'
 
 class FavouritesController {
+    async getAllFavourites(req: express.Request, res: express.Response){
+        const favourites = await models.Favourites.findAndCountAll()
+        return res.json(favourites)
+    }
+
     async createFavourite(req: express.Request, res: express.Response){
         const {userId} = req.body
         const favourite = await models.Favourites.create({userId})

@@ -28,9 +28,9 @@ class UserController {
         }
         const hashPassword = await bcrypt.hash(password, 5)
         const user = await models.User.create({username, email, password: hashPassword, name, surname, role})
-        const {id: userIid, username: userUsername, email: userEmail, name: userName, surname: userSurname, role: userRole}: any = user;
-        const favourites = await models.Favourites.create({userId: userIid})
-        const token = generateJWT(userIid, userUsername, userEmail, userName, userSurname, userRole)
+        const {id: userId, username: userUsername, email: userEmail, name: userName, surname: userSurname, role: userRole}: any = user;
+        const favourites = await models.Favourites.create({userId: userId})
+        const token = generateJWT(userId, userUsername, userEmail, userName, userSurname, userRole)
         return res.json({token})
     }
 

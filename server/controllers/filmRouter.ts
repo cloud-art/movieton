@@ -12,12 +12,12 @@ import { Op } from 'sequelize'
 class FilmController {
     async create(req: express.Request, res: express.Response, next: express.NextFunction){
         try{
-            const {title, desc, short_desc, rating, duration, date, age_limit} = req.body
+            const {kinopoiskId, title, desc, short_desc, rating, duration, date, age_limit} = req.body
             const imgFile = req.files?.img
             let img = uuidv4() + '.jpg';
             (imgFile as UploadedFile).mv(path.resolve(__dirname, '..', `static/${img}`));
             
-            const film = await models.Film.create({title, desc, short_desc, rating, duration, date, age_limit, img})
+            const film = await models.Film.create({kinopoiskId, title, desc, short_desc, rating, duration, date, age_limit, img})
 
             //handling adding film genres
             const genresQuery = req.body.genres

@@ -14,6 +14,7 @@ module models {
     
     export const Film = sequelize.define('film', {
         id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+        kinopoiskId: {type: DataTypes.INTEGER, unique: true, allowNull: false},
         title: {type: DataTypes.STRING, unique: true, allowNull: false},
         desc: {type: DataTypes.TEXT, allowNull: false},
         short_desc: {type: DataTypes.STRING, allowNull: false},
