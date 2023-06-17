@@ -25,13 +25,7 @@ const Films: React.FunctionComponent<FilmsProps> = () => {
         fetchFilms(page.page, filters).then(data => {
             setFilms(data)
         })
-    }, [page])
-
-    useEffect(() => {
-        fetchFilms(page.page, filters).then(data => {
-            setFilms(data)
-        })
-    }, [filters])
+    }, [page, filters])
 
     return (
         <div className={s.Films}>

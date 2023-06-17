@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import s from './MovieSlider.module.scss'
 import Slider from 'react-slick'
-import IFilmCard, { IFilm } from '../../types/IFilm';
+import { IFilm, IFilmCard } from '../../types/IFilm';
 import FilmCard from '../UI/FilmCard/FilmCard';
 import Button from '../UI/Button/Button';
 import classNames from 'classnames';

@@ -37,7 +37,7 @@ export const publicRoutes: Array<IRouter> = [
         Component: Homepage
     },
     {
-        path: SEARCH_ROUTE + '/:searchValue',
+        path: SEARCH_ROUTE,
         Component: Search
     },
     {

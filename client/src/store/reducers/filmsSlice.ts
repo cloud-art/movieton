@@ -14,11 +14,9 @@ export const filmsSlice = createSlice({
     reducers: {
         setFilms: (state, action) => {
             // state.isLoading = true
-            // console.log(state.isLoading)
             state.count = action.payload.count
             state.films = [...action.payload.rows]
             // state.isLoading = false
-            // console.log(state.isLoading)
         }
     }
 });

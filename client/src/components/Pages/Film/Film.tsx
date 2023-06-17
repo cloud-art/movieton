@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { deleteFilm, fetchOneFilm } from '../../../http/filmApi'
 import s from './Film.module.scss'
 import classNames from 'classnames'
 import { Title } from '../../UI/Title/Title'
 import { IFilm } from '../../../types/IFilm'
 import ButtonDefault from '../../UI/ButtonDefault/ButtonDefault'
-import { FiBookmark, FiPlay } from 'react-icons/fi'
 import Info from './components/Info/Info'
 import Tabs from './components/Tabs/FilmTabs'
 import Reviews from './components/Reviews/Reviews'
@@ -19,7 +18,8 @@ import Player from './components/Player/Player'
 type FilmProps = {}
 
 const Film:React.FC<FilmProps> = () => {
-    const [film, setFilm] = useState<IFilm>()
+    const [film, setFilm] = useState<IFilm | null>()
+	const navigate = useNavigate()
     const {id} = useParams()
 
 	const isAuth = useTypedSelector(state => state.userReducer.isAuth)
@@ -37,8 +37,23 @@ const Film:React.FC<FilmProps> = () => {
 		})
     }, [])  
 
+    useEffect(() => {
+        id && parseInt(id) &&
+		fetchOneFilm(parseInt(id)).then((data) => {
+			setFilm({
+				...data, 
+				ageLimit: data.age_limit,
+				actors: data.actors.map((e: any) => {return e.person}),
+				writers: data.writers.map((e: any) => {return e.person})
+			});
+		})
+    }, [id])  
+
 	const onDeleteClick = () => {
-		film && film.id && deleteFilm(film.id)
+		if (film && film.id) {
+			deleteFilm(film.id)
+			navigate(-1)
+		} 
 	}
 
     return (

@@ -7,10 +7,12 @@ import { useTypedSelector } from '../../../../../../../hooks/useTypedSelector';
 
 type ItemProps = {
     comment: IComment;
+    updateComments: () => void;
 }
 
 const Item:React.FC<ItemProps> = ({
     comment,
+    updateComments
 }) => {
     const [date, setDate] = useState(new Date(comment.createdAt))
 
@@ -19,6 +21,7 @@ const Item:React.FC<ItemProps> = ({
 
     const onDeleteClick = () => {
         comment.id && deleteComment(comment.id).then(data => console.log(data))
+        updateComments()
     }
 
     return (

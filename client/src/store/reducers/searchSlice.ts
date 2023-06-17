@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { IFilm, IFilmsInfo } from '../../types/IFilm';
 
 const initialState = {
     search: '',
-    visible: false
+    visible: false,
 };
 
 export const searchSlice = createSlice({
@@ -14,7 +15,7 @@ export const searchSlice = createSlice({
         },
         setVisible: (state, action) => {
             state.visible = action.payload;
-        }
+        },
     }
 });
 

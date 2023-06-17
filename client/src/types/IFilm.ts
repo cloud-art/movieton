@@ -24,7 +24,7 @@ export interface IFilmsInfo{
     films: Array<IFilm>;
 }
 
-export default interface IFilmCard {
+export interface IFilmCard {
     id: number;
     img: string;
     title: string;

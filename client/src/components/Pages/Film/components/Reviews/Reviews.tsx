@@ -4,13 +4,11 @@ import s from './Reviews.module.scss'
 import { IReview } from '../../../../../types/IFilm';
 import { Title } from '../../../../UI/Title/Title';
 import ButtonDefault from '../../../../UI/ButtonDefault/ButtonDefault';
-import Item from './components/Item/Item';
 import { useNavigate } from 'react-router-dom';
 import { REVIEWS_ROUTE } from '../../../../../utils/consts';
 import ReviewsList from '../../../../ReviewsList/ReviewsList';
 import AddReviewForm from './components/AddReviewForm/AddReviewForm';
 import { useTypedSelector } from '../../../../../hooks/useTypedSelector';
-import classNames from 'classnames';
 
 type ReviewsProps = {
     movieId: number;

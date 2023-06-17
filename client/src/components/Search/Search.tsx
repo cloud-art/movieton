@@ -4,19 +4,23 @@ import Button from '../UI/Button/Button';
 import InputText from '../UI/InputText/InputText';
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useActions } from '../../hooks/useActions';
 import classNames from 'classnames';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import useOnClickOutside from '../../hooks/useOnClickOutside';
 import { SEARCH_ROUTE } from '../../utils/consts';
 import SearchList from './components/SearchList/SearchList';
+import { fetchFilmsByName } from '../../http/filmApi';
+import { IFilm } from '../../types/IFilm';
+import { useActions } from '../../hooks/useActions';
 
 interface SearchProps {}
 
 const Search: React.FunctionComponent<SearchProps> = () => {
     const [value, setValue] = useState<string>('');
-    const { setSearch, setVisible } = useActions();
-    const { visible } = useTypedSelector((state) => state.searchReducer);
+    const [visible, setVisible] = useState(false);
+    const [films, setFilms] = useState<Array<IFilm> | null>()
+    const filters = useTypedSelector(state => state.filtersReducer)
+    const { setSearch } = useActions()
     const inputRef = useRef<HTMLInputElement>(null);
     const formRef = useRef<HTMLFormElement>(null);
     let navigate = useNavigate();
@@ -28,9 +32,9 @@ const Search: React.FunctionComponent<SearchProps> = () => {
     const submitForm = (e: FormEvent<HTMLFormElement | HTMLButtonElement>) => {
         e.preventDefault();
         if (value != ''){
-            setSearch(value);
-            //Router redirect on search page
-            navigate(SEARCH_ROUTE + `/${value}`)
+            setSearch(value)
+            setVisible(false)
+            navigate(SEARCH_ROUTE)
         }
     };
 
@@ -45,6 +49,18 @@ const Search: React.FunctionComponent<SearchProps> = () => {
     };
 
     useOnClickOutside(formRef, () => setVisible(false));
+
+    useEffect(() => {
+        fetchFilmsByName(1, filters, value, 5).then(data => {
+            setFilms(data.rows)
+        })
+    }, [])
+
+    useEffect(() => {
+		fetchFilmsByName(1, filters, value, 5).then(data => {
+            setFilms(data.rows)
+        })
+	}, [value]);
 
     useEffect(() => {
         setValue('');
@@ -89,7 +105,7 @@ const Search: React.FunctionComponent<SearchProps> = () => {
                 >
                     <FiSearch />
                 </Button>
-                {visible && <SearchList value={value}/>}
+                {visible && films && <SearchList films={films}/>}
             </form>
             <Button 
                 className={s.showSearch} 

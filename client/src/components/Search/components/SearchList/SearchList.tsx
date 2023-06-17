@@ -4,30 +4,15 @@ import { fetchFilmsByName } from '../../../../http/filmApi';
 import { useTypedSelector } from '../../../../hooks/useTypedSelector';
 import { useActions } from '../../../../hooks/useActions';
 import SearchItem from '../SearchItem/SearchItem';
+import { IFilm } from '../../../../types/IFilm';
 
 type SearchListProps = {
-    value: string;
+    films: Array<IFilm>;
 }
 
 const SearchList:React.FC<SearchListProps> = ({
-    value,
+    films,
 }) => {
-    const films = useTypedSelector(state => state.filmsReducer.films)
-    const filters = useTypedSelector(state => state.filtersReducer)
-    const { setFilms } = useActions()
-
-    useEffect(() => {
-        fetchFilmsByName(1, filters, value, 5).then(data => {
-            setFilms(data)
-        })
-    }, [])
-
-    useEffect(() => {
-		fetchFilmsByName(1, filters, value, 5).then(data => {
-            setFilms(data)
-        })
-	}, [value]);
-
     return (
         <div className={s.searchList}>
             {films && 

@@ -42,7 +42,7 @@ const Reviews:React.FC<ReviewsProps> = ({movieId}) => {
         return(
         <>
             {comments?.map((comment) => {
-                return <Item key={comment.id} comment={comment} />;
+                return <Item key={comment.id} comment={comment} updateComments={() => {updateComments(movieId, limit.current)}}/>;
             })}
             {limit.current < count &&
                 <LoadMoreButton handleClick={handleLoadMore}>
@@ -61,7 +61,13 @@ const Reviews:React.FC<ReviewsProps> = ({movieId}) => {
                     {comments?.length? (
                         <Content />
                     ): <Title className={s.notFound}>Нет комментариев</Title>}
-                    {isAuth && <AddCommentForm movieId={movieId} userId={userId} updateComments={() => {updateComments(movieId, limit.current)}}/>}
+                    {isAuth && 
+                    <AddCommentForm 
+                        movieId={movieId} 
+                        userId={userId} 
+                        updateComments={() => {updateComments(movieId, limit.current)}}
+                    />
+                    }
                 </div>
             </div>
         </>

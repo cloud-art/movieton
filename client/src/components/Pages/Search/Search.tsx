@@ -15,20 +15,20 @@ const Search: React.FunctionComponent<SearchProps> = () => {
     const filmsInfo = useTypedSelector(state => state.filmsReducer)
     const page = useTypedSelector(state => state.paginationReducer)
     const filters = useTypedSelector(state => state.filtersReducer)
-    const { searchValue } = useParams()
+    const searchValue = useTypedSelector(state => state.searchReducer.search)
     const { setFilms } = useActions()
 
     useEffect(() => {
         searchValue && fetchFilmsByName(page.page, filters, searchValue).then(data => {
             setFilms(data)
-        })
+        }).then(() => console.log(filmsInfo))
     }, [])
 
     useEffect(() => {
         searchValue && fetchFilmsByName(page.page, filters, searchValue).then(data => {
             setFilms(data)
         })
-    }, [page, filters])
+    }, [page, filters, searchValue])
 
     return (
         <div className={s.page}>
